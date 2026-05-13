@@ -23,9 +23,9 @@ import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/store/useSidebarStore";
 
 const navLinks = [
-  { name: "Tài nguyên", href: "/resources", icon: Code2 },
+  { name: "Marketplace", href: "/resources", icon: Code2 },
   { name: "Blog", href: "/blog", icon: LayoutDashboard },
-  { name: "Cộng đồng", href: "/community", icon: Users },
+  { name: "MXH", href: "/community", icon: Users },
   { name: "Reels", href: "/reels", icon: Video },
   { name: "Nhiệm vụ", href: "/tasks", icon: Target },
   { name: "Chat", href: "/chat", icon: MessageSquare },
@@ -58,7 +58,7 @@ export function Navbar() {
           type="button"
           data-magnetic
           onClick={() => setSidebarOpen(true)}
-          className="btn-quiet mr-1 flex h-9 w-9 shrink-0 items-center justify-center text-muted-foreground hover:text-foreground"
+          className="btn-quiet mr-1 flex h-9 w-9 shrink-0 items-center justify-center text-muted-foreground hover:text-foreground lg:hidden"
           aria-controls="main-sidebar"
           aria-expanded={isSidebarOpen}
           aria-label="Mở menu"

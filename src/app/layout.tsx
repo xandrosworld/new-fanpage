@@ -45,7 +45,7 @@ export default function RootLayout({
           <ArtisanEffects />
           <Sidebar />
           <Navbar />
-          <main className="flex-1 mt-16 flex flex-col">{children}</main>
+          <main className="flex-1 mt-16 flex flex-col lg:pl-20">{children}</main>
         </ThemeProvider>
       </body>
     </html>

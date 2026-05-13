@@ -19,13 +19,15 @@ export default function CommunityPage() {
     <div className="mx-auto w-full max-w-7xl px-4 py-10">
       <header className="mb-10 grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
         <div>
-          <div className="section-kicker mb-4">Community lounge</div>
-          <h1 className="display-title text-5xl md:text-7xl">Cộng đồng</h1>
+          <div className="section-kicker mb-4">Creator social network</div>
+          <h1 className="display-title text-5xl md:text-7xl">MXH Creator</h1>
         </div>
         <p className="max-w-2xl text-lg leading-8 text-muted-foreground lg:justify-self-end">
-          Một bảng tin gọn và có chất liệu để creator chia sẻ source, hỏi kinh nghiệm và tìm cộng tác viên.
+          Khu MXH được tách khỏi marketplace: feed, nhóm, bình luận, kết nối và hồ sơ uy tín sống ở đây, không lẫn với khu bán tài nguyên.
         </p>
       </header>
+
+      <div className="premium-rule mb-10" />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[17rem_1fr_18rem]">
         <aside className="hidden space-y-6 lg:block">
@@ -38,7 +40,7 @@ export default function CommunityPage() {
               </div>
             </div>
             <nav className="space-y-1">
-              {["Bảng tin", "Nhóm của tôi", "Tài nguyên đã lưu", "Reels đã lưu", "Nhiệm vụ đang làm"].map((item, index) => (
+              {["Bảng tin", "Nhóm của tôi", "Creator đang follow", "Reels đã lưu", "Nhiệm vụ đang làm"].map((item, index) => (
                 <button
                   data-magnetic
                   key={item}
@@ -58,7 +60,7 @@ export default function CommunityPage() {
             <div className="mb-4 flex gap-3">
               <img src={currentUser.avatar} alt={currentUser.name} className="h-10 w-10 rounded-[8px] object-cover" />
               <textarea
-                placeholder="Bạn muốn chia sẻ gì với cộng đồng?"
+                placeholder="Bạn muốn đăng gì lên MXH creator?"
                 className="min-h-12 flex-1 resize-none rounded-[8px] border border-white/5 bg-white/[0.035] px-4 py-3 text-sm outline-none transition-all focus:min-h-28 focus:border-primary/30"
               />
             </div>

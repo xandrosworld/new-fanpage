@@ -85,7 +85,10 @@ body {
   position: relative;
   overflow-x: hidden;
   background:
-    linear-gradient(135deg, hsl(222 34% 5%) 0%, hsl(220 24% 7%) 38%, hsl(28 28% 6%) 100%);
+    radial-gradient(circle at 18% 8%, hsl(42 77% 54% / 0.13), transparent 25rem),
+    radial-gradient(circle at 92% 16%, hsl(168 78% 46% / 0.12), transparent 26rem),
+    radial-gradient(circle at 72% 88%, hsl(338 55% 42% / 0.12), transparent 28rem),
+    linear-gradient(135deg, hsl(225 20% 4%) 0%, hsl(245 18% 5%) 42%, hsl(18 28% 6%) 100%);
   color: var(--foreground);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
 }
@@ -96,11 +99,11 @@ body::before {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.34;
+  opacity: 0.42;
   background:
-    linear-gradient(115deg, hsl(172 67% 50% / 0.12), transparent 27%),
-    linear-gradient(245deg, hsl(27 82% 57% / 0.11), transparent 31%),
-    linear-gradient(0deg, transparent, hsl(322 44% 38% / 0.08));
+    linear-gradient(112deg, hsl(44 76% 61% / 0.11), transparent 23%),
+    linear-gradient(242deg, hsl(172 67% 50% / 0.10), transparent 34%),
+    linear-gradient(0deg, transparent, hsl(331 48% 42% / 0.10));
 }
 
 body::after {
@@ -109,7 +112,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.055;
+  opacity: 0.075;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
   background-size: 180px 180px;
   mix-blend-mode: overlay;
@@ -215,13 +218,16 @@ select {
   isolation: isolate;
   overflow: hidden;
   border-radius: 8px;
-  border: 1px solid hsl(0 0% 100% / 0.055);
+  border: 1px solid hsl(43 40% 82% / 0.08);
   background:
+    linear-gradient(150deg, hsl(42 48% 72% / 0.08), transparent 24%),
+    linear-gradient(318deg, hsl(172 67% 50% / 0.07), transparent 28%),
     linear-gradient(145deg, hsl(0 0% 100% / 0.075), hsl(0 0% 100% / 0.018)),
-    hsl(222 31% 8% / 0.78);
+    hsl(232 24% 7% / 0.82);
   box-shadow:
-    0 24px 80px hsl(var(--spotlight-hue, 174) 65% 40% / 0.12),
-    inset 0 1px 0 hsl(0 0% 100% / 0.075);
+    0 26px 90px hsl(var(--spotlight-hue, 174) 65% 40% / 0.13),
+    0 1px 0 hsl(43 40% 82% / 0.05),
+    inset 0 1px 0 hsl(0 0% 100% / 0.09);
 }
 
 .light .artisan-card {
@@ -285,8 +291,10 @@ select {
 
 .btn-quiet {
   border-radius: 8px;
-  border: 1px solid hsl(0 0% 100% / 0.07);
-  background: hsl(0 0% 100% / 0.055);
+  border: 1px solid hsl(43 40% 82% / 0.085);
+  background:
+    linear-gradient(145deg, hsl(43 40% 82% / 0.06), hsl(0 0% 100% / 0.025)),
+    hsl(0 0% 100% / 0.045);
   color: var(--foreground);
   backdrop-filter: blur(14px);
   transition:
@@ -296,13 +304,95 @@ select {
 }
 
 .btn-quiet:hover {
-  border-color: hsl(172 67% 50% / 0.32);
-  background: hsl(172 67% 50% / 0.09);
+  border-color: hsl(43 78% 66% / 0.34);
+  background:
+    linear-gradient(145deg, hsl(43 78% 66% / 0.095), hsl(172 67% 50% / 0.055)),
+    hsl(0 0% 100% / 0.055);
 }
 
 [data-magnetic] {
   transform: translate3d(0, 0, 0);
   will-change: transform;
+}
+
+.side-rail {
+  position: fixed;
+  left: 0.75rem;
+  top: 5.25rem;
+  bottom: 0.75rem;
+  z-index: 50;
+  width: 3.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid hsl(43 40% 82% / 0.08);
+  background:
+    linear-gradient(180deg, hsl(43 40% 82% / 0.07), hsl(0 0% 100% / 0.025)),
+    hsl(230 22% 6% / 0.82);
+  padding: 0.55rem;
+  box-shadow:
+    0 26px 80px hsl(0 0% 0% / 0.32),
+    inset 0 1px 0 hsl(0 0% 100% / 0.07);
+  backdrop-filter: blur(18px) saturate(1.2);
+}
+
+.side-rail-button,
+.side-rail-link {
+  display: flex;
+  height: 2.35rem;
+  width: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid hsl(0 0% 100% / 0.055);
+  color: var(--muted-foreground);
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.side-rail-button:hover,
+.side-rail-link:hover,
+.side-rail-link-active {
+  border-color: hsl(43 78% 66% / 0.28);
+  background: hsl(43 78% 66% / 0.09);
+  color: hsl(43 78% 66%);
+}
+
+.commerce-plate,
+.social-plate {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid hsl(0 0% 100% / 0.07);
+  background: hsl(0 0% 100% / 0.04);
+}
+
+.commerce-plate::before,
+.social-plate::before {
+  content: "";
+  position: absolute;
+  inset: auto -20% -35% -20%;
+  height: 70%;
+  opacity: 0.48;
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+.commerce-plate::before {
+  background: hsl(172 67% 50% / 0.32);
+}
+
+.social-plate::before {
+  background: hsl(34 88% 62% / 0.28);
+}
+
+.premium-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(43 78% 66% / 0.32), hsl(172 67% 50% / 0.22), transparent);
 }
 
 .bento-grid {

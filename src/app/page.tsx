@@ -34,15 +34,15 @@ export default function Home() {
           <div className="max-w-4xl pt-10 md:pt-20">
             <div className="section-kicker mb-6">
               <Sparkles className="h-4 w-4" />
-              Studio tài nguyên cho creator và developer
+              Hai không gian bán riêng cho creator và developer
             </div>
 
             <h1 className="display-title max-w-5xl text-5xl text-white md:text-7xl lg:text-8xl">
-              Kho source code và cộng đồng creator có gu riêng.
+              Marketplace tài nguyên và MXH creator, tách bạch nhưng chung một gu.
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/72 md:text-xl">
-              ResourceHub gom template, tool MXH, reels học nhanh và nhiệm vụ kiếm tiền trong một không gian số có chất liệu, có nhịp thở, có cảm giác được chăm tay.
+              ResourceHub không trộn mọi thứ vào một feed ồn ào: tài nguyên số là một boutique marketplace riêng, còn MXH creator là không gian kết nối, chia sẻ và xây dựng uy tín riêng.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -52,7 +52,7 @@ export default function Home() {
                 className="btn-artisan px-7 py-4 text-base"
               >
                 <Code2 className="h-5 w-5" />
-                Khám phá tài nguyên
+                Vào marketplace
               </Link>
               <Link
                 data-magnetic
@@ -60,7 +60,30 @@ export default function Home() {
                 className="btn-quiet px-7 py-4 text-base font-extrabold text-white"
               >
                 <Users className="h-5 w-5" />
-                Vào cộng đồng
+                Mở MXH creator
+              </Link>
+            </div>
+
+            <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-2">
+              <Link href="/resources" className="commerce-plate group rounded-[8px] p-4">
+                <div className="mb-5 flex items-center justify-between">
+                  <Code2 className="h-5 w-5 text-primary" />
+                  <ArrowRight className="h-4 w-4 text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                </div>
+                <div className="font-extrabold text-white">Tài nguyên bán riêng</div>
+                <p className="mt-2 text-sm leading-6 text-white/60">
+                  Source, template, UI kit và script được đặt như sản phẩm thương mại.
+                </p>
+              </Link>
+              <Link href="/community" className="social-plate group rounded-[8px] p-4">
+                <div className="mb-5 flex items-center justify-between">
+                  <Users className="h-5 w-5 text-accent" />
+                  <ArrowRight className="h-4 w-4 text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-accent" />
+                </div>
+                <div className="font-extrabold text-white">MXH bán riêng</div>
+                <p className="mt-2 text-sm leading-6 text-white/60">
+                  Feed, profile, nhóm và tương tác creator tách khỏi khu mua bán.
+                </p>
               </Link>
             </div>
 
@@ -81,10 +104,10 @@ export default function Home() {
 
           <div className="grid grid-cols-6 gap-3 pb-4 lg:pb-10">
             {[
-              { label: "Tài nguyên", value: "12K+", span: "col-span-4", hue: "172" },
+              { label: "Sản phẩm số", value: "12K+", span: "col-span-4", hue: "172" },
               { label: "Creator", value: "3.5K", span: "col-span-2", hue: "28" },
               { label: "Nhiệm vụ xong", value: "2.4K", span: "col-span-3", hue: "322" },
-              { label: "Reels hướng dẫn", value: "180", span: "col-span-3", hue: "44" },
+              { label: "Feed MXH", value: "180", span: "col-span-3", hue: "44" },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -107,7 +130,7 @@ export default function Home() {
               <TrendingUp className="h-4 w-4" />
               Curated drop
             </div>
-            <h2 className="display-title text-4xl md:text-6xl">Tài nguyên nổi bật</h2>
+            <h2 className="display-title text-4xl md:text-6xl">Marketplace tài nguyên</h2>
           </div>
           <Link
             data-magnetic
@@ -147,7 +170,7 @@ export default function Home() {
                   <Play className="h-4 w-4 fill-current" />
                   Video ngắn
                 </div>
-                <h2 className="display-title text-4xl md:text-5xl">Reels đang lên</h2>
+                <h2 className="display-title text-4xl md:text-5xl">MXH đang lên</h2>
               </div>
               <Link href="/reels" className="text-sm font-bold text-primary hover:underline">
                 Xem thêm

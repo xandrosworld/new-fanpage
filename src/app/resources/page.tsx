@@ -7,7 +7,7 @@ export default function ResourcesPage() {
     "Tất cả",
     "Source Code",
     "Template Website",
-    "Tool MXH",
+    "Marketing Tool",
     "Script Automation",
     "UI Kit",
     "Plugin",
@@ -18,13 +18,15 @@ export default function ResourcesPage() {
     <div className="mx-auto w-full max-w-7xl px-4 py-10">
       <div className="mb-12 grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
         <div>
-          <div className="section-kicker mb-4">Boutique marketplace</div>
-          <h1 className="display-title text-5xl md:text-7xl">Kho tài nguyên</h1>
+          <div className="section-kicker mb-4">Boutique resource marketplace</div>
+          <h1 className="display-title text-5xl md:text-7xl">Tài nguyên bán riêng</h1>
         </div>
         <p className="max-w-2xl text-lg leading-8 text-muted-foreground lg:justify-self-end">
-          Source code, template, tool MXH và script automation được tuyển chọn theo cảm giác studio: ít ồn, nhiều khoảng thở, dễ quét nhanh.
+          Khu này chỉ dành cho sản phẩm số: source code, template, UI kit, automation script và tool thương mại. Feed MXH, bài đăng và nhóm cộng đồng được tách sang không gian riêng.
         </p>
       </div>
+
+      <div className="premium-rule mb-10" />
 
       <div className="grid gap-8 lg:grid-cols-[17rem_1fr]">
         <aside className="space-y-5">
@@ -48,9 +50,9 @@ export default function ResourcesPage() {
               </div>
 
               <div>
-                <h3 className="mb-3 text-sm font-bold text-muted-foreground">Loại tài nguyên</h3>
+                <h3 className="mb-3 text-sm font-bold text-muted-foreground">Mô hình bán</h3>
                 <div className="space-y-2">
-                  {["Miễn phí", "Trả phí"].map((item) => (
+                  {["Bản miễn phí", "Bản trả phí", "License thương mại"].map((item) => (
                     <label key={item} className="flex cursor-pointer items-center gap-2 text-sm font-semibold">
                       <input type="checkbox" className="accent-primary" />
                       <span className="transition-colors hover:text-primary">{item}</span>
