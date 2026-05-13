@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -41,8 +42,15 @@ const bottomLinks = [
 export function Sidebar() {
   const { isOpen, setIsOpen } = useSidebarStore();
   const pathname = usePathname();
+  const initialPathname = useRef(pathname);
 
   const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+
+  useEffect(() => {
+    if (initialPathname.current !== pathname) {
+      setIsOpen(false);
+    }
+  }, [pathname, setIsOpen]);
 
   return (
     <>
@@ -65,6 +73,7 @@ export function Sidebar() {
               key={link.href}
               data-magnetic
               href={link.href}
+              onClick={() => setIsOpen(false)}
               title={link.name}
               className={cn("side-rail-link", isActive(link.href) && "side-rail-link-active")}
             >
@@ -75,7 +84,14 @@ export function Sidebar() {
 
         <nav className="flex flex-col items-center gap-2">
           {bottomLinks.map((link) => (
-            <Link key={link.name} data-magnetic href={link.href} title={link.name} className="side-rail-link">
+            <Link
+              key={link.name}
+              data-magnetic
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              title={link.name}
+              className="side-rail-link"
+            >
               <link.icon className="h-4 w-4" />
             </Link>
           ))}
@@ -91,7 +107,7 @@ export function Sidebar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.18 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-[60] bg-black/20 lg:bg-transparent"
+              className="fixed inset-0 z-[60] bg-black/20 lg:hidden"
             />
 
             <motion.aside
@@ -100,7 +116,7 @@ export function Sidebar() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -28, opacity: 0 }}
               transition={{ type: "spring", damping: 30, stiffness: 310 }}
-              className="artisan-card fixed bottom-3 left-3 top-[4.75rem] z-[70] flex w-[min(23rem,calc(100vw-1.5rem))] flex-col p-0 lg:left-[5.25rem] lg:top-[5.25rem]"
+              className="nav-drawer fixed bottom-3 left-3 top-[4.75rem] z-[70] flex w-[min(23rem,calc(100vw-1.5rem))] flex-col p-0 lg:bottom-auto lg:left-[5rem] lg:top-[4.75rem] lg:z-[45] lg:max-h-[calc(100vh-5.5rem)] lg:w-[19.5rem]"
             >
               <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-4">
                 <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
