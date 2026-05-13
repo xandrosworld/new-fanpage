@@ -43,10 +43,6 @@ export function Sidebar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname, setIsOpen]);
-
-  useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
@@ -67,6 +63,7 @@ export function Sidebar() {
           />
 
           <motion.aside
+            id="main-sidebar"
             initial={{ x: "-100%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "-100%", opacity: 0 }}
@@ -83,6 +80,7 @@ export function Sidebar() {
                 </span>
               </Link>
               <button
+                type="button"
                 data-magnetic
                 onClick={() => setIsOpen(false)}
                 className="btn-quiet flex h-9 w-9 items-center justify-center text-muted-foreground hover:text-foreground"
@@ -102,6 +100,7 @@ export function Sidebar() {
                       key={link.href}
                       data-magnetic
                       href={link.href}
+                      onClick={() => setIsOpen(false)}
                       className={cn(
                         "flex items-center gap-3 rounded-[8px] px-3 py-3 text-sm font-bold transition-colors",
                         isActive
@@ -127,6 +126,7 @@ export function Sidebar() {
                     key={link.name}
                     data-magnetic
                     href={link.href}
+                    onClick={() => setIsOpen(false)}
                     className="flex items-center gap-3 rounded-[8px] px-3 py-3 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
                   >
                     <link.icon className="h-4 w-4" />

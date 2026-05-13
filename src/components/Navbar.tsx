@@ -37,7 +37,7 @@ export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const { toggle: toggleSidebar } = useSidebarStore();
+  const { isOpen: isSidebarOpen, setIsOpen: setSidebarOpen } = useSidebarStore();
 
   useEffect(() => {
     queueMicrotask(() => setMounted(true));
@@ -55,9 +55,12 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4">
         <button
+          type="button"
           data-magnetic
-          onClick={toggleSidebar}
+          onClick={() => setSidebarOpen(true)}
           className="btn-quiet mr-1 flex h-9 w-9 shrink-0 items-center justify-center text-muted-foreground hover:text-foreground"
+          aria-controls="main-sidebar"
+          aria-expanded={isSidebarOpen}
           aria-label="Mở menu"
         >
           <Menu className="h-5 w-5" />
