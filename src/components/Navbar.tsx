@@ -7,9 +7,10 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Code2, Video, Target, Users, MessageSquare, 
-  Search, Moon, Sun, Menu, X, LayoutDashboard, Wallet, Sparkles
+  Search, Moon, Sun, Menu, LayoutDashboard, Wallet, Sparkles
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSidebarStore } from "@/store/useSidebarStore";
 
 const navLinks = [
   { name: "Tài nguyên", href: "/resources", icon: Code2 },
@@ -24,9 +25,9 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const { toggle: toggleSidebar } = useSidebarStore();
 
   useEffect(() => {
     setMounted(true);
@@ -46,6 +47,15 @@ export function Navbar() {
         )}
       >
         <div className="container mx-auto px-4 h-14 flex items-center gap-2">
+          {/* Hamburger Menu Toggle */}
+          <button
+            onClick={toggleSidebar}
+            className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors mr-1 flex-shrink-0"
+            aria-label="Toggle menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0 mr-3">
             <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white shadow-md shadow-primary/30 group-hover:shadow-primary/50 transition-all">
@@ -169,60 +179,9 @@ export function Navbar() {
               />
             </Link>
 
-            {/* Mobile hamburger */}
-            <button
-              className="lg:hidden w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground ml-1"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
           </div>
         </div>
       </header>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-14 z-30 bg-background/95 backdrop-blur-xl border-b border-border shadow-xl lg:hidden"
-          >
-            <div className="p-4 flex flex-col gap-1.5">
-              <div className="relative mb-3">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder="Tìm kiếm..."
-                  className="w-full h-10 pl-9 pr-4 rounded-xl bg-secondary/50 border border-transparent focus:border-primary/50 outline-none text-sm"
-                />
-              </div>
-
-              {[...navLinks, { name: "Creator Studio", href: "/creator", icon: Sparkles }].map((link) => {
-                const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium transition-colors text-sm",
-                      isActive
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
-                    )}
-                  >
-                    <link.icon className="w-4 h-4" />
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

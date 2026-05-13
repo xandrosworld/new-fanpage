@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
+import { Sidebar } from "@/components/Sidebar";
 import { SplashIntro } from "@/components/SplashIntro";
 
 const inter = Inter({
@@ -30,6 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SplashIntro />
+          <Sidebar />
           <Navbar />
           <main className="flex-1 mt-16 flex flex-col">
             {children}
