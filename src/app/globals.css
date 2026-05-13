@@ -316,7 +316,6 @@ select {
 }
 
 .side-menu {
-  position: relative;
   isolation: isolate;
   overflow: hidden;
   border-radius: 8px;
