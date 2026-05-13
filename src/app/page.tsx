@@ -1,14 +1,25 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  ArrowUpRight,
   Code2,
+  Heart,
+  MessageCircle,
+  Newspaper,
   Play,
   Search,
   Sparkles,
   TrendingUp,
   Users,
 } from "lucide-react";
-import { resources, blogPosts, reels, tasks, users } from "@/data/mockData";
+import {
+  blogPosts,
+  feedPosts,
+  reels,
+  resources,
+  tasks,
+  users,
+} from "@/data/mockData";
 import { ResourceCard } from "@/components/cards/ResourceCard";
 import { ReelsCard } from "@/components/cards/ReelsCard";
 import { TaskCard } from "@/components/cards/TaskCard";
@@ -19,6 +30,21 @@ export default function Home() {
   const hotReels = reels.slice(0, 4);
   const topTasks = tasks.slice(0, 3);
   const latestBlogs = blogPosts.slice(0, 4);
+  const editorialNotes = blogPosts.slice(4, 7);
+  const communityPulse = feedPosts.slice(0, 2);
+  const findUser = (userId: string) => users.find((user) => user.id === userId);
+  const trendingTopics = Array.from(
+    new Set([
+      ...communityPulse.flatMap((post) => post.tags),
+      ...editorialNotes.flatMap((post) => post.tags),
+    ])
+  ).slice(0, 5);
+  const totalReelLikes = hotReels.reduce((sum, reel) => sum + reel.likes, 0);
+  const averageTaskReward = Math.round(
+    topTasks.reduce((sum, task) => sum + task.reward, 0) / topTasks.length
+  );
+  const formatCompactNumber = (value: number) =>
+    value >= 1000 ? `${(value / 1000).toFixed(1)}K` : `${value}`;
 
   return (
     <div className="flex min-h-screen flex-col pb-20">
@@ -42,7 +68,9 @@ export default function Home() {
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/72 md:text-xl">
-              ResourceHub không trộn mọi thứ vào một feed ồn ào: tài nguyên số là một boutique marketplace riêng, còn MXH creator là không gian kết nối, chia sẻ và xây dựng uy tín riêng.
+              ResourceHub không trộn mọi thứ vào một feed ồn ào: tài nguyên số là một
+              boutique marketplace riêng, còn MXH creator là không gian kết nối, chia
+              sẻ và xây dựng uy tín riêng.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -115,8 +143,12 @@ export default function Home() {
                 data-hue={stat.hue}
                 className={`artisan-card reveal-up p-5 ${stat.span}`}
               >
-                <div className="text-3xl font-extrabold text-white md:text-4xl">{stat.value}</div>
-                <div className="mt-2 text-xs font-bold uppercase text-muted-foreground">{stat.label}</div>
+                <div className="text-3xl font-extrabold text-white md:text-4xl">
+                  {stat.value}
+                </div>
+                <div className="mt-2 text-xs font-bold uppercase text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -147,7 +179,7 @@ export default function Home() {
               key={resource.id}
               index={index}
               resource={resource}
-              user={users.find((u) => u.id === resource.authorId)}
+              user={findUser(resource.authorId)}
               className={
                 index === 0
                   ? "md:col-span-4 lg:col-span-3"
@@ -162,29 +194,173 @@ export default function Home() {
       </section>
 
       <section className="border-y border-white/5 bg-white/[0.025] py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-[1.25fr_0.75fr]">
-          <div>
-            <div className="mb-8 flex items-end justify-between gap-4">
-              <div>
-                <div className="section-kicker mb-3">
-                  <Play className="h-4 w-4 fill-current" />
-                  Video ngắn
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)]">
+          <div className="space-y-6">
+            <div>
+              <div className="mb-8 flex items-end justify-between gap-4">
+                <div>
+                  <div className="section-kicker mb-3">
+                    <Play className="h-4 w-4 fill-current" />
+                    Video ngắn
+                  </div>
+                  <h2 className="display-title text-4xl md:text-5xl">MXH đang lên</h2>
                 </div>
-                <h2 className="display-title text-4xl md:text-5xl">MXH đang lên</h2>
+                <Link href="/reels" className="text-sm font-bold text-primary hover:underline">
+                  Xem thêm
+                </Link>
               </div>
-              <Link href="/reels" className="text-sm font-bold text-primary hover:underline">
-                Xem thêm
-              </Link>
+
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {hotReels.map((reel, index) => (
+                  <ReelsCard
+                    key={reel.id}
+                    index={index}
+                    reel={reel}
+                    user={findUser(reel.authorId)}
+                  />
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {hotReels.map((reel, index) => (
-                <ReelsCard
-                  key={reel.id}
-                  index={index}
-                  reel={reel}
-                  user={users.find((u) => u.id === reel.authorId)}
-                />
-              ))}
+
+            <div className="grid gap-4 lg:grid-cols-[minmax(0,1.02fr)_minmax(18rem,0.98fr)]">
+              <div data-spotlight data-hue="172" className="artisan-card reveal-up p-6">
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <div>
+                    <div className="section-kicker mb-3">
+                      <Users className="h-4 w-4" />
+                      Community pulse
+                    </div>
+                    <h3 className="text-2xl font-bold text-white md:text-3xl">
+                      Nhịp cộng đồng đang chạy
+                    </h3>
+                  </div>
+                  <Link
+                    data-magnetic
+                    href="/community"
+                    className="btn-quiet hidden h-10 items-center gap-2 px-3 text-xs font-bold sm:flex"
+                  >
+                    Vào MXH <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+
+                <div className="space-y-5">
+                  {communityPulse.map((post) => {
+                    const author = findUser(post.authorId);
+
+                    return (
+                      <article
+                        key={post.id}
+                        className="border-t border-white/5 pt-5 first:border-t-0 first:pt-0"
+                      >
+                        <div className="flex items-center gap-3">
+                          {author && (
+                            <img
+                              src={author.avatar}
+                              alt={author.name}
+                              className="h-10 w-10 rounded-[8px] object-cover"
+                            />
+                          )}
+                          <div className="min-w-0">
+                            <div className="truncate text-sm font-bold text-white">
+                              {author?.name}
+                            </div>
+                            <div className="text-xs font-semibold text-muted-foreground">
+                              {post.timestamp}
+                            </div>
+                          </div>
+                        </div>
+
+                        <p className="mt-4 max-w-[58ch] text-sm leading-6 text-foreground/84 line-clamp-3">
+                          {post.content}
+                        </p>
+
+                        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                          <div className="flex flex-wrap gap-2">
+                            {post.tags.slice(0, 2).map((tag) => (
+                              <span
+                                key={tag}
+                                className="rounded-[6px] border border-white/8 bg-white/[0.03] px-2.5 py-1 text-[11px] font-bold text-muted-foreground"
+                              >
+                                #{tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="flex items-center gap-3 text-xs font-bold text-muted-foreground">
+                            <span className="inline-flex items-center gap-1">
+                              <Heart className="h-3.5 w-3.5 text-primary" />
+                              {formatCompactNumber(post.likes)}
+                            </span>
+                            <span className="inline-flex items-center gap-1">
+                              <MessageCircle className="h-3.5 w-3.5 text-accent" />
+                              {post.comments}
+                            </span>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div data-spotlight data-hue="44" className="artisan-card reveal-up p-6">
+                <div className="section-kicker mb-3">
+                  <Sparkles className="h-4 w-4" />
+                  Tactic board
+                </div>
+                <h3 className="text-2xl font-bold text-white md:text-3xl">
+                  Khoảng nóng hôm nay
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  Nhìn nhanh những mảng đang kéo tương tác và phần thưởng để người mới có
+                  thể chọn đúng lane ngay khi vào hệ sinh thái.
+                </p>
+
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <div className="rounded-[8px] border border-white/7 bg-white/[0.03] p-4">
+                    <div className="text-[11px] font-bold uppercase text-muted-foreground">
+                      Lượt tim reels chọn lọc
+                    </div>
+                    <div className="mt-3 text-2xl font-extrabold text-white">
+                      {formatCompactNumber(totalReelLikes)}
+                    </div>
+                  </div>
+                  <div className="rounded-[8px] border border-white/7 bg-white/[0.03] p-4">
+                    <div className="text-[11px] font-bold uppercase text-muted-foreground">
+                      Thưởng trung bình
+                    </div>
+                    <div className="mt-3 text-2xl font-extrabold text-white">
+                      +{averageTaskReward.toLocaleString("vi-VN")}đ
+                    </div>
+                  </div>
+                </div>
+
+                <div className="premium-rule my-6" />
+
+                <div>
+                  <div className="mb-3 text-[11px] font-bold uppercase text-muted-foreground">
+                    Chủ đề đang nổi
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {trendingTopics.map((topic) => (
+                      <span
+                        key={topic}
+                        className="rounded-[6px] border border-white/8 bg-white/[0.03] px-2.5 py-1 text-xs font-bold text-foreground/80"
+                      >
+                        #{topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <Link
+                  data-magnetic
+                  href="/tasks"
+                  className="btn-quiet mt-6 flex w-full items-center justify-center gap-2 px-4 py-3 text-sm font-bold"
+                >
+                  Xem bảng nhiệm vụ <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -193,7 +369,8 @@ export default function Home() {
               <div className="section-kicker mb-3">Reward board</div>
               <h2 className="display-title text-4xl md:text-5xl">Nhiệm vụ hot</h2>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                Các nhiệm vụ được chọn để người mới có thể bắt đầu nhanh mà vẫn có phần thưởng rõ ràng.
+                Các nhiệm vụ được chọn để người mới có thể bắt đầu nhanh mà vẫn có phần
+                thưởng rõ ràng.
               </p>
             </div>
             <div className="space-y-4">
@@ -220,14 +397,89 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="masonry-grid">
-          {latestBlogs.map((post, index) => (
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(21rem,0.92fr)]">
+          <BlogCard
+            key={latestBlogs[0].id}
+            index={0}
+            post={latestBlogs[0]}
+            user={findUser(latestBlogs[0].authorId)}
+            className="h-full"
+            mediaClassName="aspect-[16/10] md:aspect-[16/9]"
+          />
+
+          <div data-spotlight data-hue="322" className="artisan-card reveal-up p-6">
+            <div className="mb-6 flex items-start justify-between gap-4">
+              <div>
+                <div className="section-kicker mb-3">
+                  <Newspaper className="h-4 w-4" />
+                  Editorial desk
+                </div>
+                <h3 className="text-2xl font-bold text-white md:text-3xl">
+                  Playbook đang đáng đọc
+                </h3>
+              </div>
+              <Link
+                data-magnetic
+                href="/blog"
+                className="btn-quiet hidden h-10 items-center gap-2 px-3 text-xs font-bold sm:flex"
+              >
+                Archive <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <p className="text-sm leading-6 text-muted-foreground">
+              Một lane riêng cho bài dài, case study và hướng dẫn có thể đọc ngay trong
+              giờ làm, không bị trôi như feed.
+            </p>
+
+            <div className="mt-6 space-y-5">
+              {editorialNotes.map((post) => {
+                const author = findUser(post.authorId);
+
+                return (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.id}`}
+                    className="group block border-t border-white/5 pt-5 first:border-t-0 first:pt-0"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <div className="mb-2 inline-flex rounded-[6px] border border-white/8 bg-white/[0.03] px-2.5 py-1 text-[11px] font-bold text-primary">
+                          {post.category}
+                        </div>
+                        <h3 className="text-lg font-bold leading-snug text-white transition-colors group-hover:text-primary line-clamp-2">
+                          {post.title}
+                        </h3>
+                      </div>
+                      <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                    </div>
+
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground line-clamp-3">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="mt-4 flex items-center justify-between gap-3 text-xs font-semibold text-muted-foreground">
+                      <span className="truncate">{author?.name}</span>
+                      <span>{post.readTime}</span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {latestBlogs.slice(1).map((post, index) => (
             <BlogCard
               key={post.id}
-              index={index}
+              index={index + 1}
               post={post}
-              user={users.find((u) => u.id === post.authorId)}
-              mediaClassName={index === 1 ? "aspect-[4/5]" : index === 2 ? "aspect-[1/1]" : undefined}
+              user={findUser(post.authorId)}
+              className="h-full"
+              mediaClassName={
+                index === 0 ? "aspect-[4/5]" : index === 1 ? "aspect-[1/1]" : undefined
+              }
             />
           ))}
         </div>
