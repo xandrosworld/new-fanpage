@@ -1,19 +1,28 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Be_Vietnam_Pro, Fraunces } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
 import { SplashIntro } from "@/components/SplashIntro";
+import { ArtisanEffects } from "@/components/ArtisanEffects";
 
-const inter = Inter({
-  variable: "--font-inter",
+const sans = Be_Vietnam_Pro({
+  variable: "--font-body",
   subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const display = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "MXH Resource Hub - Nền tảng chia sẻ mã nguồn & Tài nguyên MXH",
-  description: "Khám phá source code, template, tool, blog, reels, nhiệm vụ kiếm tiền và kết nối với cộng đồng trong một không gian hiện đại.",
+  title: "MXH Resource Hub - Kho tài nguyên boutique cho creator",
+  description:
+    "Không gian chia sẻ source code, template, reels, nhiệm vụ và cộng đồng creator được thiết kế như một studio số cao cấp.",
 };
 
 export default function RootLayout({
@@ -23,7 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className={`${inter.variable} min-h-screen flex flex-col antialiased bg-background text-foreground`}>
+      <body
+        className={`${sans.variable} ${display.variable} min-h-screen flex flex-col antialiased bg-background text-foreground`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -31,11 +42,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SplashIntro />
+          <ArtisanEffects />
           <Sidebar />
           <Navbar />
-          <main className="flex-1 mt-16 flex flex-col">
-            {children}
-          </main>
+          <main className="flex-1 mt-16 flex flex-col">{children}</main>
         </ThemeProvider>
       </body>
     </html>

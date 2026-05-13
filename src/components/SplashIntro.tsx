@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 export function SplashIntro() {
   const [isVisible, setIsVisible] = useState(true);
@@ -9,14 +10,14 @@ export function SplashIntro() {
   useEffect(() => {
     const hasSeenIntro = localStorage.getItem("hasSeenIntro");
     if (hasSeenIntro) {
-      setIsVisible(false);
+      queueMicrotask(() => setIsVisible(false));
       return;
     }
 
     const timer = setTimeout(() => {
       setIsVisible(false);
       localStorage.setItem("hasSeenIntro", "true");
-    }, 2500);
+    }, 1800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -26,58 +27,36 @@ export function SplashIntro() {
       {isVisible && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#020617] text-white overflow-hidden"
+          exit={{ opacity: 0, transition: { duration: 0.7, ease: "easeInOut" } }}
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-background text-foreground"
         >
-          {/* Background Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-fuchsia-500/20 rounded-full blur-[100px] animate-pulse delay-700" />
-            
-            {/* Grid pattern */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-          </div>
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,hsl(172_67%_50%/0.11),transparent_34%),linear-gradient(245deg,hsl(27_82%_57%/0.1),transparent_38%)]" />
+          <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] [background-size:44px_44px]" />
 
           <motion.div
-            initial={{ scale: 0.8, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative z-10 flex flex-col items-center"
+            initial={{ opacity: 0, y: 18, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative z-10 flex flex-col items-center px-6 text-center"
           >
-            {/* Logo Icon */}
-            <motion.div
-              initial={{ rotate: -90 }}
-              animate={{ rotate: 0 }}
-              transition={{ duration: 1, type: "spring", bounce: 0.5 }}
-              className="w-20 h-20 mb-6 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-[0_0_40px_rgba(139,92,246,0.5)]"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
-            </motion.div>
+            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.05] text-primary shadow-[0_20px_70px_hsl(172_67%_50%/0.2)]">
+              <Sparkles className="h-7 w-7" />
+            </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-white to-purple-300">
+            <h1 className="display-title mb-3 text-4xl md:text-6xl">
               MXH Resource Hub
             </h1>
-            
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-slate-400 text-sm md:text-base font-medium tracking-wide mb-10 text-center"
-            >
-              Source Code • Reels • Nhiệm vụ kiếm tiền • Cộng đồng Creator
-            </motion.p>
+            <p className="max-w-xl text-sm font-semibold text-muted-foreground md:text-base">
+              Source code, reels, nhiệm vụ và cộng đồng creator trong một không gian boutique.
+            </p>
 
-            {/* Loading Bar */}
-            <div className="w-64 h-1.5 bg-slate-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-slate-700/50">
+            <div className="mt-9 h-1.5 w-64 overflow-hidden rounded-[4px] border border-white/10 bg-white/[0.05]">
               <motion.div
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-                className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative"
-              >
-                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-              </motion.div>
+                transition={{ duration: 1.45, ease: "easeInOut" }}
+                className="h-full bg-[linear-gradient(90deg,hsl(172_67%_50%),hsl(36_88%_70%),hsl(322_62%_68%))]"
+              />
             </div>
           </motion.div>
         </motion.div>

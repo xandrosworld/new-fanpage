@@ -1,108 +1,106 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { blogPosts, users } from "@/data/mockData";
-import { ArrowLeft, Clock, Calendar, Share2, Heart, Bookmark, MessageCircle } from "lucide-react";
+import { ArrowLeft, Bookmark, Calendar, Clock, Heart, MessageCircle, Share2 } from "lucide-react";
 import Link from "next/link";
 
-export default function BlogDetailPage({ params }: { params: { id: string } }) {
-  // Mock current post (fallback to first post if not found)
-  const post = blogPosts.find(p => p.id === params.id) || blogPosts[0];
-  const author = users.find(u => u.id === post.authorId);
+export default function BlogDetailPage() {
+  const params = useParams<{ id: string }>();
+  const post = blogPosts.find((item) => item.id === params.id) || blogPosts[0];
+  const author = users.find((user) => user.id === post.authorId);
 
   return (
-    <div className="bg-background">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <Link href="/blog" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary font-medium mb-8 transition-colors">
-          <ArrowLeft className="w-4 h-4" /> Quay lại Blog
+    <div className="bg-background pb-20">
+      <div className="mx-auto max-w-5xl px-4 py-10">
+        <Link
+          data-magnetic
+          href="/blog"
+          className="btn-quiet mb-8 inline-flex items-center gap-2 px-4 py-3 text-sm font-bold"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Quay lại Blog
         </Link>
 
-        {/* Post Header */}
-        <div className="mb-8">
-          <div className="flex gap-2 mb-4">
-            <span className="px-3 py-1 bg-primary/10 text-primary text-sm font-semibold rounded-full">
-              {post.category}
-            </span>
-          </div>
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">{post.title}</h1>
-          
-          <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-y border-border/50 py-4">
+        <header className="mb-10">
+          <span className="mb-5 inline-flex rounded-[6px] border border-primary/15 bg-primary/10 px-3 py-1 text-sm font-bold text-primary">
+            {post.category}
+          </span>
+          <h1 className="display-title max-w-4xl text-5xl md:text-7xl">{post.title}</h1>
+
+          <div className="mt-8 flex flex-wrap items-center gap-6 border-y border-white/5 py-4 text-muted-foreground">
             <div className="flex items-center gap-3">
-              <img src={author?.avatar} alt={author?.name} className="w-10 h-10 rounded-full" />
-              <div className="font-semibold text-foreground">{author?.name}</div>
+              <img src={author?.avatar} alt={author?.name} className="h-10 w-10 rounded-[8px] object-cover" />
+              <div className="font-bold text-foreground">{author?.name}</div>
             </div>
             <div className="flex items-center gap-1.5 text-sm">
-              <Calendar className="w-4 h-4" /> {post.date}
+              <Calendar className="h-4 w-4" /> {post.date}
             </div>
             <div className="flex items-center gap-1.5 text-sm">
-              <Clock className="w-4 h-4" /> {post.readTime}
+              <Clock className="h-4 w-4" /> {post.readTime}
             </div>
+          </div>
+        </header>
+      </div>
+
+      <div className="mx-auto mb-12 max-w-6xl px-4">
+        <div data-spotlight data-hue="322" className="artisan-card p-3">
+          <div className="artisan-media aspect-video">
+            <img src={post.thumbnail} alt={post.title} className="h-full w-full object-cover" />
           </div>
         </div>
       </div>
 
-      {/* Cover Image */}
-      <div className="w-full max-w-5xl mx-auto px-4 mb-12">
-        <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-border/50">
-          <img src={post.thumbnail} alt={post.title} className="w-full h-full object-cover" />
-        </div>
-      </div>
+      <div className="mx-auto flex max-w-5xl flex-col gap-10 px-4 lg:flex-row">
+        <aside className="hidden h-fit flex-col items-center gap-3 lg:flex lg:sticky lg:top-24">
+          {[
+            { icon: Heart, label: "124" },
+            { icon: MessageCircle, label: "18" },
+            { icon: Bookmark, label: "" },
+            { icon: Share2, label: "" },
+          ].map((action) => (
+            <button
+              data-magnetic
+              key={action.icon.name}
+              className="btn-quiet flex h-12 w-12 flex-col items-center justify-center text-muted-foreground hover:text-primary"
+            >
+              <action.icon className="h-5 w-5" />
+              {action.label && <span className="mt-0.5 text-[10px] font-bold">{action.label}</span>}
+            </button>
+          ))}
+        </aside>
 
-      <div className="max-w-4xl mx-auto px-4 pb-20 flex flex-col lg:flex-row gap-12">
-        {/* Left Action Bar (Sticky) */}
-        <div className="hidden lg:flex flex-col items-center gap-4 sticky top-24 h-fit">
-          <button className="w-12 h-12 rounded-full border border-border/50 bg-card flex flex-col items-center justify-center text-muted-foreground hover:text-red-500 hover:border-red-500/50 transition-colors group">
-            <Heart className="w-5 h-5 group-hover:fill-red-500" />
-            <span className="text-[10px] font-medium mt-0.5">124</span>
-          </button>
-          <button className="w-12 h-12 rounded-full border border-border/50 bg-card flex flex-col items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors group">
-            <MessageCircle className="w-5 h-5 group-hover:fill-primary" />
-            <span className="text-[10px] font-medium mt-0.5">18</span>
-          </button>
-          <button className="w-12 h-12 rounded-full border border-border/50 bg-card flex items-center justify-center text-muted-foreground hover:text-yellow-500 hover:border-yellow-500/50 transition-colors group">
-            <Bookmark className="w-5 h-5 group-hover:fill-yellow-500" />
-          </button>
-          <div className="w-8 h-px bg-border/50 my-2"></div>
-          <button className="w-12 h-12 rounded-full border border-border/50 bg-card flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors group">
-            <Share2 className="w-5 h-5" />
-          </button>
-        </div>
+        <article className="artisan-card prose prose-lg max-w-none flex-1 p-6 leading-8 dark:prose-invert prose-headings:font-bold prose-a:text-primary md:p-10">
+          <p className="lead text-xl font-semibold text-muted-foreground">{post.excerpt}</p>
 
-        {/* Content */}
-        <article className="flex-1 prose prose-lg dark:prose-invert prose-headings:font-bold prose-a:text-primary max-w-none">
-          <p className="lead text-xl text-muted-foreground font-medium mb-8">
-            {post.excerpt}
-          </p>
-          
           <h2>1. Giới thiệu</h2>
           <p>
-            Đây là nội dung demo cho bài viết. Trong thực tế, nội dung này sẽ được render từ Markdown hoặc một trình soạn thảo văn bản giàu tính năng (Rich Text Editor). Hệ thống đang được thiết kế để hỗ trợ tốt nhất cho trải nghiệm đọc trên cả mobile và desktop.
+            Đây là bản ghi chú thực chiến dành cho creator và developer muốn xây sản phẩm có cộng đồng thật. Trọng tâm không chỉ là công nghệ, mà còn là nhịp trải nghiệm, cách người dùng khám phá giá trị và lý do họ quay lại.
           </p>
-          
+
           <blockquote>
-            "Sáng tạo là không có giới hạn. Việc sở hữu một cộng đồng tốt sẽ giúp sản phẩm của bạn tiến xa hơn." — {author?.name}
+            &ldquo;Sáng tạo là một hệ thống cần được chăm sóc mỗi ngày.&rdquo; - {author?.name}
           </blockquote>
 
-          <h2>2. Cách thực hiện</h2>
-          <p>Dưới đây là một số bước cơ bản bạn có thể tham khảo:</p>
+          <h2>2. Cách triển khai</h2>
+          <p>
+            Bắt đầu từ một luồng nhỏ nhưng rõ: người dùng tìm thấy tài nguyên, hiểu giá trị, lưu lại, thử nghiệm và chia sẻ phản hồi. Mỗi bước nên có một tín hiệu thị giác riêng để giảm cảm giác chung chung.
+          </p>
           <ul>
-            <li>Lên ý tưởng và wireframe cho UI/UX</li>
-            <li>Chọn Tech Stack phù hợp (Next.js, Tailwind, Node.js)</li>
-            <li>Xây dựng các Component dùng chung (Button, Card, Modal)</li>
-            <li>Phát triển các tính năng cốt lõi (Auth, CRUD, Chat)</li>
+            <li>Phác thảo hierarchy nội dung trước khi chọn component.</li>
+            <li>Giữ card ít viền, dùng ánh sáng và chất liệu để phân tầng.</li>
+            <li>Ưu tiên micro-interaction có mục đích thay vì animation dày đặc.</li>
+            <li>Kiểm tra lại typography trên mobile, đặc biệt với tiếng Việt có dấu.</li>
           </ul>
 
-          <pre><code className="language-javascript">{`// Ví dụ code snippet
-function initCommunity() {
-  console.log("Community started!");
-  const users = loadUsers();
-  setupSockets(users);
-}
-
-initCommunity();`}</code></pre>
+          <pre><code className="language-javascript">{`function initCommunity() {
+  const signals = ["read", "save", "share"];
+  return signals.map((signal) => track(signal));
+}`}</code></pre>
 
           <h2>3. Kết luận</h2>
           <p>
-            Hy vọng bài viết này mang lại giá trị cho bạn. Đừng quên thả tim và lưu bài viết để đọc lại khi cần. Nếu có thắc mắc, hãy để lại bình luận bên dưới nhé!
+            Một giao diện tốt không cần phô trương. Nó cần tạo cảm giác được biên tập kỹ, để người dùng tin rằng sản phẩm phía sau cũng được xây dựng cẩn thận như vậy.
           </p>
         </article>
       </div>

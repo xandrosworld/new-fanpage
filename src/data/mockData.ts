@@ -65,7 +65,7 @@ export const resources = [
   {
     id: "r1",
     title: "Node.js Blog CMS Starter",
-    description: "Fullstack blog CMS with Next.js 14 and Node.js Express. Includes Markdown support and SEO metadata.",
+    description: "Bộ CMS blog fullstack với Next.js và Express, có Markdown, SEO metadata và cấu trúc dễ mở rộng.",
     authorId: "u1",
     thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
     price: 0,
@@ -77,7 +77,7 @@ export const resources = [
   {
     id: "r2",
     title: "Facebook Content Automation Kit",
-    description: "Bộ script Python tự động hóa đăng bài và quản lý content trên Facebook mượt mà.",
+    description: "Script Python tự động hóa đăng bài, quản lý lịch nội dung và theo dõi hiệu suất fanpage.",
     authorId: "u3",
     thumbnail: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
     price: 250000,
@@ -89,7 +89,7 @@ export const resources = [
   {
     id: "r3",
     title: "TikTok Video Scheduler UI",
-    description: "Giao diện React hiện đại cho tool lên lịch video TikTok. Tích hợp sẵn calendar view.",
+    description: "Giao diện React cho tool lên lịch video TikTok, có calendar view và trạng thái kiểm duyệt.",
     authorId: "u2",
     thumbnail: "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=800",
     price: 150000,
@@ -101,7 +101,7 @@ export const resources = [
   {
     id: "r4",
     title: "Next.js Marketplace Template",
-    description: "Template sàn thương mại điện tử / bán tài nguyên số với Stripe tích hợp sẵn.",
+    description: "Template marketplace bán tài nguyên số với luồng checkout, thư viện sản phẩm và dashboard creator.",
     authorId: "u1",
     thumbnail: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800",
     price: 499000,
@@ -113,7 +113,7 @@ export const resources = [
   {
     id: "r5",
     title: "Social Media Analytics Dashboard",
-    description: "Dashboard thống kê mạng xã hội cực đẹp với Chart.js và Tailwind CSS.",
+    description: "Dashboard thống kê chiến dịch MXH với biểu đồ gọn, bảng so sánh và module xuất báo cáo.",
     authorId: "u2",
     thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
     price: 0,
@@ -125,7 +125,7 @@ export const resources = [
   {
     id: "r6",
     title: "Messenger-style Chat UI Kit",
-    description: "Giao diện chat giống Facebook Messenger dành cho React Native.",
+    description: "Bộ giao diện chat cho React Native, có inbox, media drawer, trạng thái online và quick action.",
     authorId: "u7",
     thumbnail: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&q=80&w=800",
     price: 199000,
@@ -137,7 +137,7 @@ export const resources = [
   {
     id: "r7",
     title: "Premium Avatar Frame Pack",
-    description: "Gói 20+ khung avatar chất lượng cao định dạng PNG và SVG cho creator.",
+    description: "Gói khung avatar PNG/SVG cho creator, phù hợp badge cá nhân, clan và sự kiện cộng đồng.",
     authorId: "u2",
     thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
     price: 50000,
@@ -149,7 +149,7 @@ export const resources = [
   {
     id: "r8",
     title: "Resource Seller Dashboard",
-    description: "Trang admin quản lý bán khóa học, tài nguyên số Next.js + Prisma.",
+    description: "Trang quản lý doanh thu, đơn hàng, tài nguyên và phản hồi khách hàng cho seller tài nguyên số.",
     authorId: "u1",
     thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
     price: 350000,
@@ -161,7 +161,7 @@ export const resources = [
   {
     id: "r9",
     title: "MySQL Community Backend Starter",
-    description: "Backend API mẫu cho mạng xã hội sử dụng Node.js, Express và MySQL.",
+    description: "Backend API mẫu cho mạng xã hội nhỏ, gồm auth, feed, comment, wallet và phân quyền admin.",
     authorId: "u3",
     thumbnail: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
     price: 0,
@@ -173,7 +173,7 @@ export const resources = [
   {
     id: "r10",
     title: "Creator Profile UI Pack",
-    description: "Trang cá nhân cho Creator tích hợp Link-in-bio đẹp mắt.",
+    description: "Bộ trang cá nhân creator có link-in-bio, showcase sản phẩm, reels nổi bật và phần đánh giá.",
     authorId: "u4",
     thumbnail: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=800",
     price: 99000,
@@ -188,7 +188,7 @@ export const blogPosts = [
   {
     id: "b1",
     title: "Cách xây dựng website chia sẻ source code bằng Node.js",
-    excerpt: "Hướng dẫn chi tiết từ A-Z cách tạo một nền tảng chia sẻ source code có tích hợp thanh toán và quản lý user.",
+    excerpt: "Hướng dẫn từ kiến trúc dữ liệu đến thanh toán, quyền truy cập và trải nghiệm tải tài nguyên cho người dùng.",
     authorId: "u1",
     thumbnail: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=800",
     date: "12 Thg 5, 2026",
@@ -199,7 +199,7 @@ export const blogPosts = [
   {
     id: "b2",
     title: "Tối ưu cộng đồng online cho creator và developer",
-    excerpt: "Làm thế nào để giữ chân user trong một nền tảng mạng xã hội mới? Dưới đây là 5 chiến lược thực chiến.",
+    excerpt: "Năm nguyên tắc giúp cộng đồng không chỉ đông hơn mà còn có chất lượng thảo luận tốt hơn.",
     authorId: "u4",
     thumbnail: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
     date: "10 Thg 5, 2026",
@@ -210,7 +210,7 @@ export const blogPosts = [
   {
     id: "b3",
     title: "Vì sao marketplace tài nguyên số đang phát triển mạnh?",
-    excerpt: "Nhu cầu mua bán template, source code, UI kit đang tăng vọt trong giới freelancer và agency.",
+    excerpt: "Nhu cầu mua bán template, source code và UI kit đang tăng nhanh trong giới freelancer và agency.",
     authorId: "u2",
     thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
     date: "08 Thg 5, 2026",
@@ -221,7 +221,7 @@ export const blogPosts = [
   {
     id: "b4",
     title: "Hướng dẫn tạo blog tích hợp trong web app",
-    excerpt: "Sử dụng Next.js và MDX để tạo ra trải nghiệm blog cực kỳ nhanh chóng và chuẩn SEO.",
+    excerpt: "Cách thiết kế hệ thống blog nhanh, rõ ràng và thân thiện SEO trong một sản phẩm Next.js.",
     authorId: "u7",
     thumbnail: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800",
     date: "05 Thg 5, 2026",
@@ -231,8 +231,8 @@ export const blogPosts = [
   },
   {
     id: "b5",
-    title: "Thiết kế trang cá nhân giống Facebook nhưng có bản sắc riêng",
-    excerpt: "Phân tích UX/UI của trang cá nhân và cách áp dụng vào platform của bạn.",
+    title: "Thiết kế trang cá nhân có bản sắc riêng",
+    excerpt: "Phân tích các yếu tố giúp profile creator vừa quen thuộc, vừa đủ cá tính để ghi nhớ.",
     authorId: "u2",
     thumbnail: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800",
     date: "02 Thg 5, 2026",
@@ -243,7 +243,7 @@ export const blogPosts = [
   {
     id: "b6",
     title: "Tích hợp chat realtime cho cộng đồng bằng Socket.io",
-    excerpt: "Step-by-step hướng dẫn setup server Socket.io và connect với React frontend.",
+    excerpt: "Từ setup server đến client event, typing indicator, room và những lỗi dễ gặp khi scale.",
     authorId: "u3",
     thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800",
     date: "28 Thg 4, 2026",
@@ -253,8 +253,8 @@ export const blogPosts = [
   },
   {
     id: "b7",
-    title: "Cách xây dựng hệ thống nhiệm vụ kiếm tiền cho cộng đồng online",
-    excerpt: "Gamification là chìa khóa. Chia sẻ kinh nghiệm làm task system chống cheat hiệu quả.",
+    title: "Xây dựng hệ thống nhiệm vụ kiếm tiền cho cộng đồng",
+    excerpt: "Gamification, bằng chứng hoàn thành và quy trình duyệt là ba điểm quyết định độ tin cậy.",
     authorId: "u1",
     thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
     date: "25 Thg 4, 2026",
@@ -264,8 +264,8 @@ export const blogPosts = [
   },
   {
     id: "b8",
-    title: "Thiết kế ví rút tiền an toàn trong nền tảng creator economy",
-    excerpt: "Những lưu ý bảo mật và luồng (flow) khi người dùng yêu cầu rút tiền.",
+    title: "Thiết kế ví rút tiền an toàn trong creator economy",
+    excerpt: "Những lưu ý về bảo mật, trạng thái giao dịch và trải nghiệm khi người dùng yêu cầu rút tiền.",
     authorId: "u1",
     thumbnail: "https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?auto=format&fit=crop&q=80&w=800",
     date: "20 Thg 4, 2026",
@@ -279,7 +279,7 @@ export const feedPosts = [
   {
     id: "p1",
     authorId: "u1",
-    content: "Mình vừa up bộ template Next.js marketplace, anh em cần có thể tải thử ở mục Tài nguyên nhé. Có hỗ trợ Stripe sẵn luôn! 🚀",
+    content: "Mình vừa cập nhật bộ template marketplace Next.js. Phần checkout và seller dashboard đã tách module rõ hơn để mọi người dễ tùy biến.",
     timestamp: "2 giờ trước",
     likes: 124,
     comments: 18,
@@ -289,7 +289,7 @@ export const feedPosts = [
   {
     id: "p2",
     authorId: "u3",
-    content: "Có ai đang làm tool tự động hóa nội dung Facebook không? Mình muốn trao đổi thêm về cách bypass một số check mới của FB API. 🤔",
+    content: "Có ai đang tối ưu tool đăng bài Facebook không? Mình đang gom case về lịch đăng, proxy và retry queue để viết một bài tổng hợp.",
     timestamp: "4 giờ trước",
     likes: 45,
     comments: 32,
@@ -298,7 +298,7 @@ export const feedPosts = [
   {
     id: "p3",
     authorId: "u7",
-    content: "Bản update mới của Node.js Blog CMS đã hỗ trợ markdown editor và SEO metadata. Mọi người clone về vọc thử nha.",
+    content: "Bản update mới của Node.js Blog CMS đã hỗ trợ markdown editor và SEO metadata. Ai clone về test giúp mình phần import ảnh nhé.",
     timestamp: "5 giờ trước",
     likes: 89,
     comments: 12,
@@ -308,7 +308,7 @@ export const feedPosts = [
   {
     id: "p4",
     authorId: "u2",
-    content: "Share free 20 avatar frame cho creator dùng thử. Link trong bio hoặc tìm trong kho tài nguyên của mình nhé. ✨",
+    content: "Mình share miễn phí 20 khung avatar cho creator. Bộ này hợp với profile cá nhân, nhóm học code và cộng đồng nhỏ.",
     timestamp: "Hôm qua",
     likes: 256,
     comments: 45,
@@ -317,7 +317,7 @@ export const feedPosts = [
   {
     id: "p5",
     authorId: "u8",
-    content: "Mình vừa hoàn thành nhiệm vụ review tool, được cộng 35.000đ vào ví. Nhiệm vụ nền tảng dạo này duyệt nhanh phết! 💰",
+    content: "Mình vừa hoàn thành nhiệm vụ review tool và được cộng 35.000đ vào ví. Quy trình duyệt nhanh hơn lần trước khá nhiều.",
     timestamp: "Hôm qua",
     likes: 112,
     comments: 8,
@@ -326,7 +326,7 @@ export const feedPosts = [
   {
     id: "p6",
     authorId: "u4",
-    content: "Xu hướng làm Reels hiện tại là tập trung vào giá trị cốt lõi ngay 3s đầu tiên. Đừng dông dài nữa các bác ạ.",
+    content: "Xu hướng làm Reels hiện tại là tập trung vào giá trị trong 3 giây đầu. Một câu mở rõ thường hiệu quả hơn intro dài.",
     timestamp: "2 ngày trước",
     likes: 340,
     comments: 56,
@@ -335,7 +335,7 @@ export const feedPosts = [
   {
     id: "p7",
     authorId: "u1",
-    content: "Hôm nay mình sẽ live stream hướng dẫn tích hợp Socket.io vào Next.js lúc 8h tối. Anh em nhớ đón xem trên group nhé.",
+    content: "Tối nay mình livestream tích hợp Socket.io vào Next.js lúc 20:00. Mọi người chuẩn bị sẵn repo demo để làm theo nhé.",
     timestamp: "2 ngày trước",
     likes: 178,
     comments: 24,
@@ -344,16 +344,16 @@ export const feedPosts = [
   {
     id: "p8",
     authorId: "u5",
-    content: "Cho mình hỏi ngu xíu, làm sao để verify tài khoản Creator trên nền tảng này vậy mọi người?",
+    content: "Mọi người cho mình hỏi nên học Next.js ngay sau React hay làm thêm vài project React thuần trước?",
     timestamp: "3 ngày trước",
     likes: 12,
     comments: 15,
-    tags: ["HỏiĐáp"],
+    tags: ["HoiDap"],
   },
   {
     id: "p9",
     authorId: "u6",
-    content: "Mới tập tành học React, mong được mọi người chỉ giáo. Mình có nên học Next.js luôn không hay rành React trước?",
+    content: "Mình mới tập làm dashboard quản lý content, đang cần góp ý cách chia layout cho phần lịch đăng bài.",
     timestamp: "3 ngày trước",
     likes: 56,
     comments: 42,
@@ -362,7 +362,7 @@ export const feedPosts = [
   {
     id: "p10",
     authorId: "u2",
-    content: "Giao diện mới của nền tảng nhìn mướt thực sự. Dark mode kết hợp gradient đúng chuẩn premium! 😍",
+    content: "Giao diện mới nên ưu tiên cảm giác đọc lâu không mỏi mắt. Ít bóng đổ hơn, nhiều khoảng trắng hơn và font có cá tính hơn.",
     timestamp: "4 ngày trước",
     likes: 450,
     comments: 89,
@@ -373,9 +373,9 @@ export const feedPosts = [
 
 export const conversations = [
   { id: "c1", name: "Node.js Việt Nam", type: "group", avatar: "https://i.pravatar.cc/150?u=group1", lastMessage: "Ai giúp mình fix lỗi CORS này với", time: "10:25 AM", unread: 3, online: true },
-  { id: "c2", name: "Tool MXH & Automation", type: "group", avatar: "https://i.pravatar.cc/150?u=group2", lastMessage: "FB mới update thuật toán nhé anh em", time: "Hôm qua", unread: 0, online: true },
+  { id: "c2", name: "Tool MXH & Automation", type: "group", avatar: "https://i.pravatar.cc/150?u=group2", lastMessage: "Facebook vừa đổi vài rule API nhé anh em", time: "Hôm qua", unread: 0, online: true },
   { id: "c3", name: "Chợ Source Code", type: "group", avatar: "https://i.pravatar.cc/150?u=group3", lastMessage: "Có ai bán clone TikTok không?", time: "Hôm qua", unread: 15, online: false },
-  { id: "c4", name: "Creator Premium", type: "group", avatar: "https://i.pravatar.cc/150?u=group4", lastMessage: "Chào mừng @Linh Social tham gia nhóm", time: "T2", unread: 0, online: true },
+  { id: "c4", name: "Creator Premium", type: "group", avatar: "https://i.pravatar.cc/150?u=group4", lastMessage: "Chào mừng Linh Social tham gia nhóm", time: "T2", unread: 0, online: true },
   { id: "c5", name: "Support MXH Resource Hub", type: "user", avatar: "https://i.pravatar.cc/150?u=admin", lastMessage: "Yêu cầu rút tiền của bạn đã được duyệt.", time: "T3", unread: 1, online: true },
   { id: "c6", name: "Alex Dev", type: "user", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d", lastMessage: "Ok bạn, lát mình gửi source qua", time: "T7 tuần trước", unread: 0, online: false },
 ];
@@ -386,7 +386,7 @@ export const reels = [
     authorId: "u3",
     videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     thumbnail: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400",
-    caption: "Demo tool tự động hóa nội dung Facebook 🚀 #automation #facebook",
+    caption: "Demo tool tự động hóa nội dung Facebook #automation #facebook",
     likes: 12400,
     comments: 342,
     shares: 120,
@@ -397,7 +397,7 @@ export const reels = [
     authorId: "u1",
     videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400",
-    caption: "3 source code Node.js đáng dùng cho creator #nodejs #coding #creator",
+    caption: "3 source code Node.js đáng dùng cho creator #nodejs #coding",
     likes: 8500,
     comments: 156,
     shares: 45,
@@ -408,7 +408,7 @@ export const reels = [
     authorId: "u2",
     videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     thumbnail: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=400",
-    caption: "Cách làm landing page bán tài nguyên số cực xịn #uiux #webdesign",
+    caption: "Cách làm landing page bán tài nguyên số gọn và sang #uiux",
     likes: 45200,
     comments: 890,
     shares: 2100,
@@ -419,7 +419,7 @@ export const reels = [
     authorId: "u7",
     videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     thumbnail: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&q=80&w=400",
-    caption: "Review template chat giống Messenger bằng React Native #reactnative #app",
+    caption: "Review template chat bằng React Native #reactnative #app",
     likes: 3200,
     comments: 45,
     shares: 12,
@@ -430,7 +430,7 @@ export const reels = [
     authorId: "u8",
     videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400",
-    caption: "Một ngày làm nhiệm vụ kiếm tiền trên MXH Resource Hub 💸 #kiemtienonline",
+    caption: "Một ngày làm nhiệm vụ kiếm tiền trên ResourceHub #kiemtienonline",
     likes: 5600,
     comments: 230,
     shares: 89,
@@ -442,7 +442,7 @@ export const tasks = [
   {
     id: "t1",
     title: "Xem 5 video Reels công nghệ",
-    description: "Xem ít nhất 5 video trong chuyên mục Công Nghệ, mỗi video xem tối thiểu 30 giây và thả tim.",
+    description: "Xem ít nhất 5 video trong chuyên mục công nghệ, mỗi video tối thiểu 30 giây và thả tim.",
     type: "Xem Reels",
     reward: 15000,
     estimatedTime: "5 phút",
@@ -453,7 +453,7 @@ export const tasks = [
   {
     id: "t2",
     title: "Chia sẻ 1 bài blog lên Facebook",
-    description: "Share một bài viết bất kỳ trong mục Blog lên Facebook cá nhân ở chế độ công khai, kèm hashtag #MXHResourceHub.",
+    description: "Chia sẻ một bài viết bất kỳ trong mục Blog lên Facebook cá nhân ở chế độ công khai.",
     type: "Chia sẻ bài viết",
     reward: 25000,
     estimatedTime: "2 phút",
@@ -464,7 +464,7 @@ export const tasks = [
   {
     id: "t3",
     title: "Review tài nguyên Node.js Blog CMS",
-    description: "Tải và trải nghiệm source code Node.js Blog CMS, sau đó để lại đánh giá 5 sao kèm nhận xét chi tiết ít nhất 50 từ.",
+    description: "Tải và trải nghiệm source code, sau đó để lại đánh giá chi tiết tối thiểu 50 từ.",
     type: "Review tài nguyên",
     reward: 35000,
     estimatedTime: "15 phút",
@@ -475,7 +475,7 @@ export const tasks = [
   {
     id: "t4",
     title: "Mời 1 thành viên mới đăng ký",
-    description: "Sử dụng link giới thiệu của bạn mời 1 người bạn đăng ký tài khoản và xác thực email thành công.",
+    description: "Sử dụng link giới thiệu của bạn để mời một người đăng ký và xác thực email thành công.",
     type: "Mời bạn bè",
     reward: 50000,
     estimatedTime: "Không giới hạn",
@@ -486,7 +486,7 @@ export const tasks = [
   {
     id: "t5",
     title: "Đăng 1 Reels giới thiệu tool MXH",
-    description: "Tạo 1 video Reels ngắn giới thiệu một tool mạng xã hội bạn hay dùng, đăng lên nền tảng với hashtag #ReviewTool.",
+    description: "Tạo video ngắn giới thiệu một tool mạng xã hội bạn hay dùng và đăng lên nền tảng.",
     type: "Đăng reels",
     reward: 80000,
     estimatedTime: "30 phút",
@@ -508,7 +508,7 @@ export const tasks = [
   {
     id: "t7",
     title: "Bình luận chất lượng vào 3 bài viết",
-    description: "Để lại 3 bình luận (ít nhất 20 từ) mang tính xây dựng vào 3 bài viết khác nhau trong mục Cộng đồng.",
+    description: "Để lại 3 bình luận có tính xây dựng vào 3 bài viết khác nhau trong mục Cộng đồng.",
     type: "Bình luận",
     reward: 10000,
     estimatedTime: "5 phút",
@@ -519,7 +519,7 @@ export const tasks = [
   {
     id: "t8",
     title: "Upload 1 source code miễn phí",
-    description: "Chia sẻ 1 source code do bạn tự code hoặc có bản quyền chia sẻ lên mục Tài nguyên với giá 0đ.",
+    description: "Chia sẻ source code do bạn tự code hoặc có quyền chia sẻ lên mục Tài nguyên với giá 0đ.",
     type: "Upload source",
     reward: 100000,
     estimatedTime: "10 phút",

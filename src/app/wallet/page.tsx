@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { walletTransactions } from "@/data/mockData";
-import { Wallet as WalletIcon, ArrowUpRight, ArrowDownLeft, Clock, CheckCircle2, AlertCircle } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, CheckCircle2, Clock, Wallet as WalletIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function WalletPage() {
@@ -10,145 +10,151 @@ export default function WalletPage() {
   const [method, setMethod] = useState("bank");
   const [toastMessage, setToastMessage] = useState("");
 
-  const handleWithdraw = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleWithdraw = (event: React.FormEvent) => {
+    event.preventDefault();
     if (parseInt(amount.replace(/\D/g, "")) < 100000) {
       alert("Số tiền rút tối thiểu là 100.000đ");
       return;
     }
-    setToastMessage("Yêu cầu rút tiền đã được gửi, admin sẽ xử lý trong 24–48h.");
+    setToastMessage("Yêu cầu rút tiền đã được gửi, admin sẽ xử lý trong 24-48h.");
     setAmount("");
     setTimeout(() => setToastMessage(""), 5000);
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl">
+    <div className="mx-auto w-full max-w-6xl px-4 py-10">
       {toastMessage && (
-        <div className="fixed top-20 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg font-medium flex items-center gap-2 animate-in slide-in-from-top-5">
-          <CheckCircle2 className="w-5 h-5" />
+        <div className="fixed right-4 top-20 z-50 flex items-center gap-2 rounded-[8px] bg-green-500 px-5 py-3 font-bold text-white shadow-2xl">
+          <CheckCircle2 className="h-5 w-5" />
           {toastMessage}
         </div>
       )}
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Ví của tôi</h1>
-        <p className="text-muted-foreground">Quản lý thu nhập và yêu cầu rút tiền</p>
-      </div>
+      <header className="mb-8">
+        <div className="section-kicker mb-4">Wallet room</div>
+        <h1 className="display-title text-5xl md:text-7xl">Ví của tôi</h1>
+        <p className="mt-4 text-muted-foreground">Quản lý thu nhập và yêu cầu rút tiền trong một bảng điều khiển gọn.</p>
+      </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        {/* Main Balance Card */}
-        <div className="md:col-span-2 bg-gradient-to-br from-primary to-purple-600 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl shadow-primary/20">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-          <div className="relative z-10 flex flex-col h-full justify-between">
-            <div className="flex items-center gap-2 mb-8 opacity-90">
-              <WalletIcon className="w-6 h-6" />
-              <span className="font-medium text-lg">Số dư khả dụng</span>
+      <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div data-spotlight data-hue="172" className="artisan-card md:col-span-2 p-8 text-white">
+          <div className="mb-10 flex items-center gap-2 text-white/80">
+            <WalletIcon className="h-6 w-6" />
+            <span className="font-bold">Số dư khả dụng</span>
+          </div>
+          <div className="text-5xl font-extrabold md:text-7xl">
+            1.250.000<span className="text-3xl">đ</span>
+          </div>
+          <div className="mt-8 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-2">
+            <div>
+              <div className="mb-1 text-sm text-white/60">Đang chờ duyệt</div>
+              <div className="flex items-center gap-1 text-lg font-extrabold">
+                <Clock className="h-4 w-4" /> 320.000đ
+              </div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-bold tracking-tight mb-2">1.250.000<span className="text-3xl">đ</span></div>
-              <div className="flex items-center gap-6 mt-6 pt-6 border-t border-white/20">
-                <div>
-                  <div className="text-sm opacity-80 mb-1">Đang chờ duyệt</div>
-                  <div className="font-semibold text-lg flex items-center gap-1">
-                    <Clock className="w-4 h-4" /> 320.000đ
-                  </div>
-                </div>
-                <div>
-                  <div className="text-sm opacity-80 mb-1">Đã rút thành công</div>
-                  <div className="font-semibold text-lg flex items-center gap-1">
-                    <CheckCircle2 className="w-4 h-4" /> 2.600.000đ
-                  </div>
-                </div>
+              <div className="mb-1 text-sm text-white/60">Đã rút thành công</div>
+              <div className="flex items-center gap-1 text-lg font-extrabold">
+                <CheckCircle2 className="h-4 w-4" /> 2.600.000đ
               </div>
             </div>
           </div>
         </div>
 
-        {/* Withdraw Form Card */}
-        <div className="bg-card border border-border/50 rounded-3xl p-6 shadow-sm">
-          <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <ArrowUpRight className="w-5 h-5 text-primary" /> Rút tiền
+        <div data-spotlight data-hue="28" className="artisan-card p-6">
+          <h2 className="mb-6 flex items-center gap-2 text-xl font-extrabold">
+            <ArrowUpRight className="h-5 w-5 text-primary" />
+            Rút tiền
           </h2>
           <form onSubmit={handleWithdraw} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-1.5 text-muted-foreground">Số tiền muốn rút</label>
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-bold text-muted-foreground">Số tiền muốn rút</span>
               <div className="relative">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="Tối thiểu 100.000" 
-                  className="w-full bg-secondary/50 border border-border/50 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-colors font-medium text-lg"
+                  onChange={(event) => setAmount(event.target.value)}
+                  placeholder="Tối thiểu 100.000"
+                  className="w-full rounded-[8px] border border-white/5 bg-white/[0.04] px-4 py-3 text-lg font-bold outline-none focus:border-primary/40"
                   required
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 font-medium text-muted-foreground">VNĐ</span>
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-muted-foreground">VNĐ</span>
               </div>
-            </div>
+            </label>
 
             <div>
-              <label className="block text-sm font-medium mb-1.5 text-muted-foreground">Phương thức</label>
+              <span className="mb-1.5 block text-sm font-bold text-muted-foreground">Phương thức</span>
               <div className="grid grid-cols-2 gap-2">
-                <button type="button" onClick={() => setMethod("bank")} className={cn("py-2.5 rounded-xl text-sm font-medium border transition-colors", method === "bank" ? "border-primary bg-primary/10 text-primary" : "border-border/50 bg-secondary/30")}>Ngân hàng</button>
-                <button type="button" onClick={() => setMethod("momo")} className={cn("py-2.5 rounded-xl text-sm font-medium border transition-colors", method === "momo" ? "border-[#A50064] bg-[#A50064]/10 text-[#A50064]" : "border-border/50 bg-secondary/30")}>Momo</button>
+                {[
+                  ["bank", "Ngân hàng"],
+                  ["momo", "Momo"],
+                ].map(([value, label]) => (
+                  <button
+                    data-magnetic
+                    type="button"
+                    key={value}
+                    onClick={() => setMethod(value)}
+                    className={cn("px-3 py-3 text-sm font-bold", method === value ? "btn-artisan" : "btn-quiet")}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {method === "bank" ? (
-              <div className="space-y-3">
-                <input type="text" placeholder="Ngân hàng (VD: Vietcombank)" className="w-full bg-secondary/50 border border-border/50 rounded-xl px-4 py-2.5 outline-none focus:border-primary/50 text-sm" required />
-                <input type="text" placeholder="Số tài khoản" className="w-full bg-secondary/50 border border-border/50 rounded-xl px-4 py-2.5 outline-none focus:border-primary/50 text-sm" required />
-                <input type="text" placeholder="Tên chủ tài khoản" className="w-full bg-secondary/50 border border-border/50 rounded-xl px-4 py-2.5 outline-none focus:border-primary/50 text-sm" required />
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <input type="text" placeholder="Số điện thoại Momo" className="w-full bg-secondary/50 border border-border/50 rounded-xl px-4 py-2.5 outline-none focus:border-primary/50 text-sm" required />
-                <input type="text" placeholder="Tên chủ ví" className="w-full bg-secondary/50 border border-border/50 rounded-xl px-4 py-2.5 outline-none focus:border-primary/50 text-sm" required />
-              </div>
-            )}
+            <div className="space-y-3">
+              {method === "bank" ? (
+                <>
+                  <input type="text" placeholder="Ngân hàng" className="w-full rounded-[8px] border border-white/5 bg-white/[0.04] px-4 py-3 text-sm outline-none" required />
+                  <input type="text" placeholder="Số tài khoản" className="w-full rounded-[8px] border border-white/5 bg-white/[0.04] px-4 py-3 text-sm outline-none" required />
+                  <input type="text" placeholder="Tên chủ tài khoản" className="w-full rounded-[8px] border border-white/5 bg-white/[0.04] px-4 py-3 text-sm outline-none" required />
+                </>
+              ) : (
+                <>
+                  <input type="text" placeholder="Số điện thoại Momo" className="w-full rounded-[8px] border border-white/5 bg-white/[0.04] px-4 py-3 text-sm outline-none" required />
+                  <input type="text" placeholder="Tên chủ ví" className="w-full rounded-[8px] border border-white/5 bg-white/[0.04] px-4 py-3 text-sm outline-none" required />
+                </>
+              )}
+            </div>
 
-            <button type="submit" className="w-full py-3.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-colors shadow-md mt-2">
+            <button data-magnetic type="submit" className="btn-artisan w-full py-3.5">
               Gửi yêu cầu rút tiền
             </button>
           </form>
         </div>
       </div>
 
-      {/* Transaction History */}
-      <div className="bg-card border border-border/50 rounded-3xl p-6 shadow-sm overflow-hidden">
-        <h2 className="text-xl font-bold mb-6">Lịch sử giao dịch</h2>
+      <div data-spotlight data-hue="322" className="artisan-card overflow-hidden p-6">
+        <h2 className="mb-6 text-xl font-extrabold">Lịch sử giao dịch</h2>
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="border-b border-border/50 text-muted-foreground text-sm">
-                <th className="pb-4 font-medium pl-4">Loại giao dịch</th>
-                <th className="pb-4 font-medium">Mã GD</th>
-                <th className="pb-4 font-medium">Thời gian</th>
-                <th className="pb-4 font-medium">Số tiền</th>
-                <th className="pb-4 font-medium pr-4">Trạng thái</th>
+              <tr className="border-b border-white/5 text-sm text-muted-foreground">
+                <th className="pb-4 pl-4 font-bold">Loại giao dịch</th>
+                <th className="pb-4 font-bold">Mã GD</th>
+                <th className="pb-4 font-bold">Thời gian</th>
+                <th className="pb-4 font-bold">Số tiền</th>
+                <th className="pb-4 pr-4 font-bold">Trạng thái</th>
               </tr>
             </thead>
             <tbody>
-              {walletTransactions.map((tx, idx) => (
-                <tr key={tx.id} className={cn("border-b border-border/50 last:border-0 hover:bg-secondary/20 transition-colors", idx % 2 === 0 ? "bg-secondary/10" : "")}>
+              {walletTransactions.map((tx, index) => (
+                <tr key={tx.id} className={cn("border-b border-white/5 text-sm last:border-0", index % 2 === 0 && "bg-white/[0.025]")}>
                   <td className="py-4 pl-4">
                     <div className="flex items-center gap-3">
-                      <div className={cn("w-10 h-10 rounded-full flex items-center justify-center", tx.amount > 0 ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500")}>
-                        {tx.amount > 0 ? <ArrowDownLeft className="w-5 h-5" /> : <ArrowUpRight className="w-5 h-5" />}
+                      <div className={cn("flex h-10 w-10 items-center justify-center rounded-[8px]", tx.amount > 0 ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400")}>
+                        {tx.amount > 0 ? <ArrowDownLeft className="h-5 w-5" /> : <ArrowUpRight className="h-5 w-5" />}
                       </div>
-                      <span className="font-medium">{tx.type}</span>
+                      <span className="font-bold">{tx.type}</span>
                     </div>
                   </td>
-                  <td className="py-4 text-sm text-muted-foreground">{tx.txId}</td>
-                  <td className="py-4 text-sm text-muted-foreground">{tx.time}</td>
-                  <td className={cn("py-4 font-bold", tx.amount > 0 ? "text-green-500" : "text-red-500")}>
+                  <td className="py-4 text-muted-foreground">{tx.txId}</td>
+                  <td className="py-4 text-muted-foreground">{tx.time}</td>
+                  <td className={cn("py-4 font-extrabold", tx.amount > 0 ? "text-green-400" : "text-red-400")}>
                     {tx.amount > 0 ? "+" : ""}{tx.amount.toLocaleString()}đ
                   </td>
                   <td className="py-4 pr-4">
-                    <span className={cn(
-                      "px-3 py-1 text-xs font-semibold rounded-full",
-                      tx.status === "Thành công" ? "bg-green-500/10 text-green-500" : 
-                      tx.status === "Chờ duyệt" ? "bg-amber-500/10 text-amber-500" : "bg-red-500/10 text-red-500"
-                    )}>
+                    <span className="rounded-[6px] border border-white/5 bg-white/[0.04] px-3 py-1 text-xs font-bold">
                       {tx.status}
                     </span>
                   </td>

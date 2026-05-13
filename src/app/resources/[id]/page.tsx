@@ -1,217 +1,188 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { resources, users } from "@/data/mockData";
-import { ArrowLeft, Star, Download, Bookmark, ExternalLink, ShieldCheck, Clock, FileCode2 } from "lucide-react";
+import { ArrowLeft, Bookmark, Clock, Download, FileCode2, ShieldCheck, Star } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export default function ResourceDetailPage({ params }: { params: { id: string } }) {
-  const resource = resources.find(r => r.id === params.id) || resources[0];
-  const author = users.find(u => u.id === resource.authorId);
+export default function ResourceDetailPage() {
+  const params = useParams<{ id: string }>();
+  const resource = resources.find((item) => item.id === params.id) || resources[0];
+  const author = users.find((user) => user.id === resource.authorId);
   const [activeTab, setActiveTab] = useState("Tổng quan");
 
   return (
-    <div className="bg-background min-h-screen pb-20">
-      {/* Banner / Hero */}
-      <div className="bg-card border-b border-border/50 pt-8 pb-12">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <Link href="/resources" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary font-medium mb-6 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Quay lại
+    <div className="min-h-screen bg-background pb-20">
+      <section className="border-b border-white/5 px-4 py-10">
+        <div className="mx-auto max-w-6xl">
+          <Link data-magnetic href="/resources" className="btn-quiet mb-8 inline-flex items-center gap-2 px-4 py-3 text-sm font-bold">
+            <ArrowLeft className="h-4 w-4" />
+            Quay lại
           </Link>
 
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-            {/* Thumbnail */}
-            <div className="w-full lg:w-1/2 aspect-video rounded-2xl overflow-hidden border border-border/50 shadow-lg relative group">
-              <img src={resource.thumbnail} alt={resource.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm cursor-pointer">
-                <div className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full font-semibold">
-                  <ExternalLink className="w-4 h-4" /> Xem Preview
-                </div>
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div data-spotlight data-hue="172" className="artisan-card p-3">
+              <div className="artisan-media aspect-video">
+                <img src={resource.thumbnail} alt={resource.title} className="h-full w-full object-cover" />
               </div>
             </div>
 
-            {/* Info */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-center">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="px-3 py-1 bg-secondary text-secondary-foreground text-sm font-semibold rounded-full border border-border/50">
+            <div>
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="rounded-[6px] border border-white/8 bg-white/[0.04] px-3 py-1 text-sm font-bold">
                   {resource.category}
                 </span>
-                <div className="flex items-center gap-1 text-yellow-500 bg-yellow-500/10 px-2.5 py-1 rounded-full text-sm font-bold border border-yellow-500/20">
-                  <Star className="w-4 h-4 fill-current" />
+                <div className="flex items-center gap-1 rounded-[6px] border border-amber-300/15 bg-amber-300/10 px-2.5 py-1 text-sm font-bold text-amber-300">
+                  <Star className="h-4 w-4 fill-current" />
                   {resource.rating} (124 đánh giá)
                 </div>
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">{resource.title}</h1>
-              
-              <p className="text-lg text-muted-foreground mb-6">
-                {resource.description}
-              </p>
+              <h1 className="display-title mb-5 text-5xl md:text-6xl">{resource.title}</h1>
+              <p className="mb-6 text-lg leading-8 text-muted-foreground">{resource.description}</p>
 
-              <div className="flex items-center gap-4 mb-8">
-                <img src={author?.avatar} alt={author?.name} className="w-12 h-12 rounded-full border border-border" />
+              <div className="mb-8 flex items-center gap-4">
+                <img src={author?.avatar} alt={author?.name} className="h-12 w-12 rounded-[8px] border border-white/10 object-cover" />
                 <div>
                   <div className="text-sm text-muted-foreground">Phát triển bởi</div>
-                  <div className="font-semibold flex items-center gap-1">
-                    {author?.name} 
-                    {author?.badge && <span className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center text-white text-[10px] font-bold ml-1">✓</span>}
-                  </div>
+                  <div className="font-extrabold">{author?.name}</div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-y border-border/50 mb-8">
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">Giá</div>
-                  <div className="font-bold text-xl text-primary">{resource.price === 0 ? "Miễn phí" : `${resource.price.toLocaleString()}đ`}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">Lượt tải</div>
-                  <div className="font-semibold text-lg flex items-center gap-1">
-                    <Download className="w-4 h-4 text-muted-foreground" /> {resource.downloads.toLocaleString()}
+              <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {[
+                  { label: "Giá", value: resource.price === 0 ? "Miễn phí" : `${resource.price.toLocaleString()}đ` },
+                  { label: "Lượt tải", value: resource.downloads.toLocaleString(), icon: Download },
+                  { label: "Cập nhật", value: "2 ngày trước", icon: Clock },
+                  { label: "Phiên bản", value: "v1.2.0", icon: FileCode2 },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-[8px] border border-white/5 bg-white/[0.03] p-3">
+                    <div className="mb-1 text-xs font-bold text-muted-foreground">{item.label}</div>
+                    <div className="flex items-center gap-1 text-sm font-extrabold">
+                      {item.icon && <item.icon className="h-4 w-4 text-primary" />}
+                      {item.value}
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">Cập nhật</div>
-                  <div className="font-semibold text-lg flex items-center gap-1">
-                    <Clock className="w-4 h-4 text-muted-foreground" /> 2 ngày trước
-                  </div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">Phiên bản</div>
-                  <div className="font-semibold text-lg flex items-center gap-1">
-                    <FileCode2 className="w-4 h-4 text-muted-foreground" /> v1.2.0
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button className="flex-1 py-4 bg-primary text-white rounded-xl font-bold text-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 flex justify-center items-center gap-2">
-                  <Download className="w-5 h-5" />
-                  {resource.price === 0 ? "Tải về miễn phí" : "Mua ngay"}
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button data-magnetic className="btn-artisan flex-1 py-4 text-base">
+                  <Download className="h-5 w-5" />
+                  {resource.price === 0 ? "Tải miễn phí" : "Mua ngay"}
                 </button>
-                <button className="px-6 py-4 border-2 border-border/50 rounded-xl font-bold hover:bg-secondary/50 transition-colors flex justify-center items-center gap-2">
-                  <Bookmark className="w-5 h-5" /> Lưu lại
+                <button data-magnetic className="btn-quiet px-6 py-4 font-extrabold">
+                  <Bookmark className="h-5 w-5" />
+                  Lưu lại
                 </button>
               </div>
-              
-              <div className="flex justify-center items-center gap-2 mt-4 text-sm text-green-500 font-medium">
-                <ShieldCheck className="w-4 h-4" /> Đã kiểm duyệt an toàn, không có mã độc.
+
+              <div className="mt-4 flex items-center gap-2 text-sm font-bold text-primary">
+                <ShieldCheck className="h-4 w-4" />
+                Đã kiểm duyệt an toàn, không có mã độc.
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Details Tabs */}
-      <div className="container mx-auto px-4 max-w-6xl mt-8">
-        <div className="flex overflow-x-auto hide-scrollbar gap-2 mb-8 border-b border-border/50">
-          {["Tổng quan", "Tính năng", "Hướng dẫn cài đặt", "Bình luận", "Changelog"].map(tab => (
-            <button 
+      <section className="mx-auto mt-8 max-w-6xl px-4">
+        <div className="hide-scrollbar mb-8 flex gap-2 overflow-x-auto border-b border-white/5 pb-2">
+          {["Tổng quan", "Tính năng", "Hướng dẫn cài đặt", "Bình luận", "Changelog"].map((tab) => (
+            <button
+              data-magnetic
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={cn(
-                "px-6 py-4 font-medium whitespace-nowrap transition-colors border-b-2",
-                activeTab === tab ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
-              )}
+              className={cn("px-4 py-2 text-sm font-bold", activeTab === tab ? "btn-artisan" : "btn-quiet")}
             >
               {tab}
             </button>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2 prose prose-lg dark:prose-invert max-w-none">
+        <div className="grid gap-10 lg:grid-cols-[1fr_20rem]">
+          <article className="artisan-card prose prose-lg max-w-none p-6 leading-8 dark:prose-invert md:p-8">
             {activeTab === "Tổng quan" && (
               <>
-                <h3>Giới thiệu về {resource.title}</h3>
+                <h2>Giới thiệu về {resource.title}</h2>
                 <p>
-                  Đây là một giải pháp toàn diện giúp bạn xây dựng ứng dụng một cách nhanh chóng. 
-                  Source code được viết bằng các công nghệ hiện đại nhất, clean code, dễ dàng mở rộng và tùy biến.
+                  Đây là tài nguyên được đóng gói để bạn triển khai nhanh nhưng vẫn dễ mở rộng. Cấu trúc thư mục rõ, UI responsive và tài liệu đủ để đội nhỏ có thể tùy biến ngay.
                 </p>
-                <img src={resource.thumbnail} alt="" className="rounded-xl border border-border/50 w-full" />
-                <h3>Tech Stack</h3>
-                <div className="flex flex-wrap gap-2 not-prose mb-8">
-                  {resource.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-secondary text-foreground text-sm font-medium rounded-lg border border-border/50">
+                <div className="not-prose my-6 overflow-hidden rounded-[8px] border border-white/5">
+                  <img src={resource.thumbnail} alt="" className="w-full object-cover" />
+                </div>
+                <h3>Tech stack</h3>
+                <div className="not-prose mb-8 flex flex-wrap gap-2">
+                  {resource.tags.map((tag) => (
+                    <span key={tag} className="rounded-[6px] border border-white/5 bg-white/[0.04] px-3 py-1 text-sm font-bold">
                       {tag}
                     </span>
                   ))}
                 </div>
                 <h3>Tại sao chọn tài nguyên này?</h3>
                 <ul>
-                  <li>Tiết kiệm 80% thời gian code từ đầu.</li>
-                  <li>Thiết kế UI/UX hiện đại, responsive 100%.</li>
-                  <li>Tài liệu hướng dẫn cài đặt chi tiết (Documentation).</li>
-                  <li>Hỗ trợ update miễn phí trong 6 tháng.</li>
+                  <li>Tiết kiệm thời gian dựng nền tảng ban đầu.</li>
+                  <li>Thiết kế dễ điều chỉnh theo thương hiệu riêng.</li>
+                  <li>Có hướng dẫn cài đặt và cập nhật miễn phí trong 6 tháng.</li>
                 </ul>
               </>
             )}
 
             {activeTab === "Hướng dẫn cài đặt" && (
               <>
-                <h3>Yêu cầu hệ thống</h3>
+                <h2>Yêu cầu hệ thống</h2>
                 <ul>
                   <li>Node.js v18.17.0 trở lên</li>
                   <li>npm v9.0.0 hoặc pnpm</li>
                   <li>Git</li>
                 </ul>
-                <h3>Bước 1: Cài đặt dependencies</h3>
-                <pre><code>npm install
-# hoặc
-pnpm install</code></pre>
-                <h3>Bước 2: Cấu hình biến môi trường</h3>
-                <p>Copy file <code>.env.example</code> thành <code>.env.local</code> và điền các thông tin cần thiết.</p>
-                <pre><code>cp .env.example .env.local</code></pre>
-                <h3>Bước 3: Chạy project</h3>
+                <h3>Cài đặt dependencies</h3>
+                <pre><code>npm install</code></pre>
+                <h3>Chạy project</h3>
                 <pre><code>npm run dev</code></pre>
-                <p>Project sẽ chạy tại địa chỉ: <a href="http://localhost:3000">http://localhost:3000</a></p>
               </>
             )}
-          </div>
+          </article>
 
-          {/* Right Sidebar */}
-          <div className="space-y-6">
-            <div className="bg-card border border-border/50 rounded-2xl p-6 shadow-sm">
-              <h3 className="font-bold text-lg mb-4">Thông tin thêm</h3>
+          <aside className="space-y-6">
+            <div data-spotlight data-hue="28" className="artisan-card p-5">
+              <h3 className="mb-4 font-extrabold">Thông tin thêm</h3>
               <div className="space-y-4 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Bản quyền</span>
-                  <span className="font-medium">Cá nhân (1 project)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Framework</span>
-                  <span className="font-medium">Next.js 14, Tailwind CSS</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Dung lượng</span>
-                  <span className="font-medium">4.2 MB</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Đã kiểm tra trên</span>
-                  <span className="font-medium">Chrome, Safari, Edge</span>
-                </div>
+                {[
+                  ["Bản quyền", "Cá nhân (1 project)"],
+                  ["Framework", "Next.js, Tailwind CSS"],
+                  ["Dung lượng", "4.2 MB"],
+                  ["Đã kiểm tra", "Chrome, Safari, Edge"],
+                ].map(([label, value]) => (
+                  <div key={label} className="flex justify-between gap-4">
+                    <span className="text-muted-foreground">{label}</span>
+                    <span className="text-right font-bold">{value}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="bg-card border border-border/50 rounded-2xl p-6 shadow-sm">
-              <h3 className="font-bold text-lg mb-4">Tài nguyên liên quan</h3>
+            <div data-spotlight data-hue="172" className="artisan-card p-5">
+              <h3 className="mb-4 font-extrabold">Tài nguyên liên quan</h3>
               <div className="space-y-4">
-                {resources.filter(r => r.id !== resource.id).slice(0,3).map(r => (
-                  <Link key={r.id} href={`/resources/${r.id}`} className="flex gap-3 group">
-                    <img src={r.thumbnail} alt="" className="w-20 h-14 rounded-lg object-cover" />
+                {resources.filter((item) => item.id !== resource.id).slice(0, 3).map((item) => (
+                  <Link key={item.id} href={`/resources/${item.id}`} className="group flex gap-3">
+                    <img src={item.thumbnail} alt="" className="h-14 w-20 rounded-[6px] object-cover" />
                     <div>
-                      <div className="text-sm font-semibold group-hover:text-primary transition-colors line-clamp-1">{r.title}</div>
-                      <div className="text-xs text-primary font-bold mt-1">{r.price === 0 ? "Free" : `${r.price.toLocaleString()}đ`}</div>
+                      <div className="text-sm font-bold transition-colors line-clamp-1 group-hover:text-primary">{item.title}</div>
+                      <div className="mt-1 text-xs font-extrabold text-primary">
+                        {item.price === 0 ? "Free" : `${item.price.toLocaleString()}đ`}
+                      </div>
                     </div>
                   </Link>
                 ))}
               </div>
             </div>
-          </div>
+          </aside>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
