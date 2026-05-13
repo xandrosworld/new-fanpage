@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
-import { SplashIntro } from "@/components/SplashIntro";
 import { ArtisanEffects } from "@/components/ArtisanEffects";
 
 const sans = Be_Vietnam_Pro({
@@ -41,7 +40,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SplashIntro />
           <ArtisanEffects />
           <Sidebar />
           <Navbar />

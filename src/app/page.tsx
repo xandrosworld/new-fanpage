@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col pb-20">
-      <section className="relative min-h-[calc(100vh-4rem)] overflow-hidden px-4 pb-16 pt-24 md:pt-28">
+      <section className="relative overflow-hidden px-4 pb-16 pt-12 md:pt-16">
         <img
           src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=82&w=2200"
           alt=""
@@ -30,8 +30,8 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(222_34%_5%/0.96),hsl(222_34%_5%/0.74)_52%,hsl(222_34%_5%/0.52))]" />
 
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
-          <div className="max-w-4xl pt-10 md:pt-20">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div className="max-w-4xl">
             <div className="section-kicker mb-6">
               <Sparkles className="h-4 w-4" />
               Hai không gian bán riêng cho creator và developer
