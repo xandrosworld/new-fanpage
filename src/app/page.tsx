@@ -222,24 +222,28 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-[minmax(0,1.02fr)_minmax(18rem,0.98fr)]">
+            <div className="grid gap-4 xl:grid-cols-[minmax(0,1.02fr)_minmax(18rem,0.98fr)]">
               <div data-spotlight data-hue="172" className="artisan-card reveal-up p-6">
-                <div className="mb-6 flex items-start justify-between gap-4">
-                  <div>
+                <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0">
                     <div className="section-kicker mb-3">
                       <Users className="h-4 w-4" />
                       Community pulse
                     </div>
-                    <h3 className="text-2xl font-bold text-white md:text-3xl">
-                      Nhịp cộng đồng đang chạy
+                    <h3 className="max-w-[12ch] text-3xl font-bold leading-[1.02] text-white sm:text-4xl">
+                      Nhịp cộng đồng
                     </h3>
+                    <p className="mt-3 max-w-[32ch] text-sm leading-6 text-muted-foreground">
+                      Hai cuộc trao đổi có tín hiệu tốt để người vào sau vẫn bắt được nhịp
+                      của feed.
+                    </p>
                   </div>
                   <Link
                     data-magnetic
                     href="/community"
-                    className="btn-quiet hidden h-10 items-center gap-2 px-3 text-xs font-bold sm:flex"
+                    className="btn-quiet hidden h-10 shrink-0 items-center gap-2 whitespace-nowrap px-3 text-xs font-bold sm:inline-flex"
                   >
-                    Vào MXH <ArrowRight className="h-4 w-4" />
+                    Mở feed <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
 
@@ -308,25 +312,25 @@ export default function Home() {
                   <Sparkles className="h-4 w-4" />
                   Tactic board
                 </div>
-                <h3 className="text-2xl font-bold text-white md:text-3xl">
-                  Khoảng nóng hôm nay
+                <h3 className="max-w-[12ch] text-3xl font-bold leading-[1.02] text-white sm:text-4xl">
+                  Tâm điểm hôm nay
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                <p className="mt-3 max-w-[34ch] text-sm leading-6 text-muted-foreground">
                   Nhìn nhanh những mảng đang kéo tương tác và phần thưởng để người mới có
                   thể chọn đúng lane ngay khi vào hệ sinh thái.
                 </p>
 
-                <div className="mt-6 grid grid-cols-2 gap-3">
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-[8px] border border-white/7 bg-white/[0.03] p-4">
-                    <div className="text-[11px] font-bold uppercase text-muted-foreground">
-                      Lượt tim reels chọn lọc
+                    <div className="text-[10px] font-bold uppercase leading-[1.2] text-muted-foreground">
+                      Lượt tim reels
                     </div>
                     <div className="mt-3 text-2xl font-extrabold text-white">
                       {formatCompactNumber(totalReelLikes)}
                     </div>
                   </div>
                   <div className="rounded-[8px] border border-white/7 bg-white/[0.03] p-4">
-                    <div className="text-[11px] font-bold uppercase text-muted-foreground">
+                    <div className="text-[10px] font-bold uppercase leading-[1.2] text-muted-foreground">
                       Thưởng trung bình
                     </div>
                     <div className="mt-3 text-2xl font-extrabold text-white">
