@@ -103,7 +103,7 @@ export const resources = [
     title: "Next.js Marketplace Template",
     description: "Template sàn thương mại điện tử / bán tài nguyên số với Stripe tích hợp sẵn.",
     authorId: "u1",
-    thumbnail: "https://images.unsplash.com/photo-1472851294608-062f124dcb02?auto=format&fit=crop&q=80&w=800",
+    thumbnail: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800",
     price: 499000,
     downloads: 210,
     rating: 5.0,
