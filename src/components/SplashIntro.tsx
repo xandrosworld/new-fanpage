@@ -30,7 +30,7 @@ export function SplashIntro() {
           exit={{ opacity: 0, transition: { duration: 0.7, ease: "easeInOut" } }}
           className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-background text-foreground"
         >
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,hsl(172_67%_50%/0.11),transparent_34%),linear-gradient(245deg,hsl(27_82%_57%/0.1),transparent_38%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,hsl(17_88%_64%/0.12),transparent_34%),linear-gradient(245deg,hsl(205_92%_67%/0.1),transparent_38%)]" />
           <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] [background-size:44px_44px]" />
 
           <motion.div
@@ -39,7 +39,7 @@ export function SplashIntro() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative z-10 flex flex-col items-center px-6 text-center"
           >
-            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.05] text-primary shadow-[0_20px_70px_hsl(172_67%_50%/0.2)]">
+            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.05] text-primary shadow-[0_20px_70px_hsl(17_88%_64%/0.2)]">
               <Sparkles className="h-7 w-7" />
             </div>
 
@@ -55,7 +55,7 @@ export function SplashIntro() {
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 1.45, ease: "easeInOut" }}
-                className="h-full bg-[linear-gradient(90deg,hsl(172_67%_50%),hsl(36_88%_70%),hsl(322_62%_68%))]"
+                className="h-full bg-[linear-gradient(90deg,hsl(17_88%_64%),hsl(348_66%_48%),hsl(205_92%_67%))]"
               />
             </div>
           </motion.div>

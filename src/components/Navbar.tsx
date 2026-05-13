@@ -67,7 +67,7 @@ export function Navbar() {
         </button>
 
         <Link href="/" className="group mr-4 flex shrink-0 items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.04] text-primary shadow-[0_18px_45px_hsl(172_67%_50%/0.16)]">
+          <div className="flex h-9 w-9 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.04] text-primary shadow-[0_18px_45px_hsl(17_88%_64%/0.16)]">
             <Sparkles className="h-4 w-4" />
           </div>
           <span className="hidden text-base font-extrabold sm:block">

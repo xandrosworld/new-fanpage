@@ -4,6 +4,15 @@ import { useEffect } from "react";
 
 export function ArtisanEffects() {
   useEffect(() => {
+    const hueMap: Record<string, string> = {
+      "172": "18",
+      "28": "205",
+      "38": "205",
+      "44": "18",
+      "292": "205",
+      "322": "348",
+    };
+
     const handlePointerMove = (event: PointerEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
@@ -13,7 +22,8 @@ export function ArtisanEffects() {
         const rect = spotlight.getBoundingClientRect();
         spotlight.style.setProperty("--spotlight-x", `${event.clientX - rect.left}px`);
         spotlight.style.setProperty("--spotlight-y", `${event.clientY - rect.top}px`);
-        spotlight.style.setProperty("--spotlight-hue", spotlight.dataset.hue || "174");
+        const hue = spotlight.dataset.hue || "18";
+        spotlight.style.setProperty("--spotlight-hue", hueMap[hue] || hue);
       }
 
       const magnetic = target.closest<HTMLElement>("[data-magnetic]");
