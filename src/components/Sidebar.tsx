@@ -51,6 +51,7 @@ export function Sidebar() {
     <>
       <motion.aside
         id="main-sidebar"
+        data-expanded={isOpen ? "true" : "false"}
         initial={false}
         animate={{ width: isOpen ? 316 : 58 }}
         transition={{ type: "spring", damping: 32, stiffness: 330 }}
@@ -77,6 +78,7 @@ export function Sidebar() {
               className="fixed inset-0 z-[60] bg-black/28 lg:hidden"
             />
             <motion.aside
+              data-expanded="true"
               initial={{ x: -24, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -24, opacity: 0 }}
@@ -110,7 +112,7 @@ function SidebarContent({
   onNavigate: () => void;
 }) {
   return (
-    <div className="flex h-full flex-col overflow-hidden p-2">
+    <div className="side-menu-content flex h-full flex-col overflow-hidden p-2">
       <button
         type="button"
         onClick={onToggle}
@@ -137,9 +139,9 @@ function SidebarContent({
         )}
       </button>
 
-      <div className="mt-3 flex-1 overflow-y-auto overflow-x-hidden">
+      <div className="side-menu-scroll mt-3 flex-1 overflow-y-auto overflow-x-hidden">
         {expanded && (
-          <div className="mb-3 grid grid-cols-2 gap-2">
+          <div className="side-menu-promos mb-3 grid grid-cols-2 gap-2">
             <Link href="/resources" onClick={onNavigate} className="commerce-plate rounded-[8px] p-3">
               <Code2 className="mb-3 h-5 w-5 text-primary" />
               <div className="text-sm font-extrabold">Tài nguyên</div>
@@ -153,7 +155,7 @@ function SidebarContent({
           </div>
         )}
 
-        <nav className="space-y-1">
+        <nav className="side-menu-nav">
           {primaryLinks.map((link) => (
             <MenuLink
               key={link.href}
@@ -165,10 +167,10 @@ function SidebarContent({
           ))}
         </nav>
 
-        <div className="my-4 h-px bg-white/5" />
+        <div className="side-menu-divider my-4 h-px bg-white/5" />
 
         {expanded && <div className="px-2 pb-2 text-[10px] font-bold uppercase text-muted-foreground">Studio</div>}
-        <nav className="space-y-1">
+        <nav className="side-menu-nav">
           {utilityLinks.map((link) => (
             <MenuLink
               key={link.name}
