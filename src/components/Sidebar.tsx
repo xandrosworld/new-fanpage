@@ -12,12 +12,12 @@ import {
   MessageSquare,
   Settings,
   Shield,
-  Sparkles,
   Target,
   Users,
   Video,
   X,
 } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/store/useSidebarStore";
 
@@ -29,7 +29,7 @@ const primaryLinks = [
   { name: "Reels", href: "/reels", icon: Video },
   { name: "Nhiệm vụ", href: "/tasks", icon: Target },
   { name: "Chat", href: "/chat", icon: MessageSquare },
-  { name: "Creator", href: "/creator", icon: Sparkles },
+  { name: "Creator", href: "/creator", icon: BrandMark },
 ];
 
 const utilityLinks = [
@@ -134,7 +134,7 @@ function SidebarContent({
                 Marketplace + MXH
               </span>
             </span>
-            <Sparkles className="h-4 w-4 text-primary" />
+            <BrandMark className="h-4 w-4 text-primary" />
           </>
         )}
       </button>

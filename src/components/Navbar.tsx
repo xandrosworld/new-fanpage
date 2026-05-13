@@ -12,13 +12,13 @@ import {
   MessageSquare,
   Moon,
   Search,
-  Sparkles,
   Sun,
   Target,
   Users,
   Video,
   Wallet,
 } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/store/useSidebarStore";
 
@@ -68,7 +68,7 @@ export function Navbar() {
 
         <Link href="/" className="group mr-4 flex shrink-0 items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.04] text-primary shadow-[0_18px_45px_hsl(17_88%_64%/0.16)]">
-            <Sparkles className="h-4 w-4" />
+            <BrandMark className="h-4 w-4" />
           </div>
           <span className="hidden text-base font-extrabold sm:block">
             Resource<span className="gradient-text">Hub</span>
@@ -108,7 +108,7 @@ export function Navbar() {
               pathname === "/creator" ? "text-primary" : "text-muted-foreground hover:text-foreground"
             )}
           >
-            <Sparkles className="h-3.5 w-3.5" />
+            <BrandMark className="h-3.5 w-3.5" />
             <span>Creator</span>
             {pathname === "/creator" && (
               <motion.div

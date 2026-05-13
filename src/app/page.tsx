@@ -8,10 +8,10 @@ import {
   Newspaper,
   Play,
   Search,
-  Sparkles,
   TrendingUp,
   Users,
 } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 import {
   blogPosts,
   feedPosts,
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <div className="max-w-4xl">
             <div className="section-kicker mb-6">
-              <Sparkles className="h-4 w-4" />
+              <BrandMark className="h-4 w-4" />
               Hai không gian bán riêng cho creator và developer
             </div>
 
@@ -309,7 +309,7 @@ export default function Home() {
 
               <div data-spotlight data-hue="44" className="artisan-card reveal-up p-6">
                 <div className="section-kicker mb-3">
-                  <Sparkles className="h-4 w-4" />
+                  <BrandMark className="h-4 w-4" />
                   Tactic board
                 </div>
                 <h3 className="max-w-[12ch] text-3xl font-bold leading-[1.02] text-white sm:text-4xl">

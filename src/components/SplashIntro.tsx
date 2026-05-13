@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 
 const INTRO_DURATION_MS = 2000;
 
@@ -30,7 +30,7 @@ export function SplashIntro() {
 
           <div className="relative z-10 flex flex-col items-center px-6 text-center">
             <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.05] text-primary shadow-[0_20px_70px_hsl(17_88%_64%/0.2)]">
-              <Sparkles className="h-7 w-7" />
+              <BrandMark className="h-7 w-7" />
             </div>
 
             <h1 className="display-title mb-3 text-4xl md:text-6xl">
